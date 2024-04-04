@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Bachelor_Work</string>
+    <string name="more">More</string>
+    <string name="profile">Profile</string>
+    <string name="history">History</string>
+    <string name="home">Home</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="result_text">Your result: %s</string>
+    <string name="invalid_weight">Invalid weight</string>
+    <string name="one_rep_max_description">One Rep Max (1RM) is a vital metric in weight training, representing the maximum amount of weight an individual can lift for a single repetition with proper form. It\'s crucial for designing effective strength training programs.\n\nCalculation Methods:\n\nEpley Formula: Estimates 1RM using weight lifted and repetitions performed.\nBrzycki Formula: Calculates 1RM based on weight lifted and repetitions.\nLombardi Formula: Provides an alternative approach to estimating 1RM using weight lifted and repetitions.</string>
+
+
+</resources>

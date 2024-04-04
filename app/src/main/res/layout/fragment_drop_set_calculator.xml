@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Toolbar -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        android:layout_alignParentTop="true" />
+
+    <!-- Main content layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/toolbar"
+        android:padding="16dp">
+
+        <!-- Weight input section -->
+        <LinearLayout
+            android:id="@+id/weightInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp">
+
+            <EditText
+                android:id="@+id/starting_weight_edittext"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:layout_marginStart="8dp"
+                android:hint="Enter starting weight:"
+                android:inputType="numberDecimal"
+                android:minHeight="48dp" />
+
+        </LinearLayout>
+
+        <!-- Choose Reps TextView -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Percentage Decrease:"
+            android:textStyle="bold"
+            android:textSize="18dp" />
+
+        <!-- NumberPicker for choosing percentage decrease -->
+        <NumberPicker
+            android:id="@+id/percentage_decrease_picker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp" />
+
+        <!-- Number of Sets TextView -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Number of Sets:"
+            android:textStyle="bold"
+            android:textSize="18dp" />
+
+        <!-- NumberPicker for choosing number of sets -->
+        <NumberPicker
+            android:id="@+id/num_sets_picker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp" />
+
+        <!-- Button to calculate drop set -->
+        <Button
+            android:id="@+id/calculate_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Calculate Drop Set"
+            android:layout_marginTop="16dp" />
+
+        <!-- Result TextView -->
+        <TextView
+            android:id="@+id/result_textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textSize="18sp" />
+
+        <!-- Button to toggle the weight table -->
+        <Button
+            android:id="@+id/toggleTableButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Show Weight Table"
+            android:layout_marginTop="16dp"
+            android:layout_gravity="bottom" />
+
+    </LinearLayout>
+
+    <!-- Transparent background overlay -->
+    <View
+        android:id="@+id/backgroundOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#80000000"
+        android:visibility="gone"
+        android:layout_below="@id/toolbar" />
+
+</RelativeLayout>

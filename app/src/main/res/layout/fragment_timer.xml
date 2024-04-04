@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <TextView
+        android:id="@+id/timerTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="48sp"
+        android:text="00:00:00"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/millisecondsTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:text="000"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <ImageButton
+            android:id="@+id/startButton"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:padding="16dp"
+            android:src="@drawable/baseline_play_circle_24"
+            android:contentDescription="Start" />
+
+        <ImageButton
+            android:id="@+id/pauseButton"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:padding="16dp"
+            android:src="@drawable/baseline_pause_circle_24"
+            android:contentDescription="Pause"
+            android:visibility="gone" />
+
+        <ImageButton
+            android:id="@+id/resetButton"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:padding="16dp"
+            android:src="@drawable/baseline_stop_circle_24"
+            android:contentDescription="Reset"
+            android:visibility="gone" />
+    </LinearLayout>
+
+</LinearLayout>

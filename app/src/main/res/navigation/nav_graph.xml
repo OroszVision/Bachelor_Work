@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.bachelor_work.fragments.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_dropSetCalculatorFragment"
+            app:destination="@id/dropSetCalculatorFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_homeFragment_to_oneRepMaxCalculatorFragment"
+            app:destination="@id/oneRepMaxCalculatorFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_reversePyramidCalculatorFragment"
+            app:destination="@id/reversePyramidCalculatorFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/timerFragment"
+        android:name="com.example.bachelor_work.fragments.TimerFragment"
+        android:label="Timer"
+        tools:layout="@layout/fragment_timer"/>
+
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="com.example.bachelor_work.fragments.HistoryFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_history" />
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.bachelor_work.fragments.ProfileFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_profile" >
+    </fragment>
+
+    <fragment
+        android:id="@+id/moreFragment"
+        android:name="com.example.bachelor_work.fragments.MoreFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_more" />
+
+    <fragment
+        android:id="@+id/oneRepMaxCalculatorFragment"
+        android:name="com.example.bachelor_work.fragments.OneRepMaxCalculatorFragment"
+        android:label="One Rep Max Calculator"
+        tools:layout="@layout/fragment_one_rep_max_calculator" >
+        <action
+            android:id="@+id/action_oneRepMaxCalculatorFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/dropSetCalculatorFragment"
+        android:name="com.example.bachelor_work.fragments.DropSetCalculatorFragment"
+        android:label="Drop-set Calculator"
+        tools:layout="@layout/fragment_drop_set_calculator" >
+        <action
+            android:id="@+id/action_dropSetCalculatorFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/reversePyramidCalculatorFragment"
+        android:name="com.example.bachelor_work.fragments.ReversePyramidCalculatorFragment"
+        android:label="Reverse Pyramid Calculator"
+        tools:layout="@layout/fragment_reverse_pyramid_calculator"
+        >
+
+        <action
+            android:id="@+id/action_reversePyramidCalculatorFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+
+    <!-- Define actions between fragments -->
+
+    <!-- Add more fragments and actions as needed -->
+</navigation>

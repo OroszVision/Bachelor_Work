@@ -1,0 +1,13 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Bachelor_Work" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    </style>
+
+    <style name="Theme.Bachelor_Work" parent="Base.Theme.Bachelor_Work" />
+
+    <style name="App.Custom.Indicator" parent="ShapeAppearance.Material3.NavigationBarView.ActiveIndicator">
+        <item name="android:color">@color/yellow</item>
+    </style>
+</resources>
