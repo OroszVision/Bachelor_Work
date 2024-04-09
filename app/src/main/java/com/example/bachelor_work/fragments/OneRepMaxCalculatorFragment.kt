@@ -98,20 +98,37 @@ class OneRepMaxCalculatorFragment : Fragment() {
                 else -> throw IllegalArgumentException("Invalid method")
             }
 
-
-
             // After calculation, populate the RecyclerView with data
             val weightItems = mutableListOf<WeightItem>()
             for (i in 100 downTo 50 step 5) {
-                val weight = calculateWeightForPercentage(oneRepMax, i)
-                weightItems.add(WeightItem(i, -1, -1, weight.round(2)))
+                val weightPercentage = calculateWeightForPercentage(oneRepMax, i)
+                val repetitionsForPercentage = calculateRepetitionsForPercentage(i)
+                weightItems.add(WeightItem(i, -1, repetitionsForPercentage, weightPercentage.round(2)))
             }
 
             val adapter = WeightAdapter(weightItems)
             weightRecyclerView.layoutManager = LinearLayoutManager(requireContext())
             weightRecyclerView.adapter = adapter
+
         } else {
             // Handle invalid weight input
+        }
+    }
+
+    private fun calculateRepetitionsForPercentage(percentage: Int): Int {
+        return when (percentage) {
+            100 -> 1
+            95 -> 2
+            90 -> 4
+            85 -> 6
+            80 -> 8
+            75 -> 10
+            70 -> 12
+            65 -> 16
+            60 -> 20
+            55 -> 24
+            50 -> 30
+            else -> throw IllegalArgumentException("Invalid percentage")
         }
     }
 

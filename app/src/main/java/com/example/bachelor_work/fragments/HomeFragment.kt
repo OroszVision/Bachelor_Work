@@ -46,8 +46,14 @@ class HomeFragment : Fragment() {
                 "Drop-set Calculator" -> {
                     findNavController().navigate(R.id.action_homeFragment_to_dropSetCalculatorFragment)
                 }
+                "Pyramid Calculator" -> {
+                    findNavController().navigate(R.id.action_homeFragment_to_basicPyramidCalculatorFragment)
+                }
                 "Reverse Pyramid Calculator" -> {
                     findNavController().navigate(R.id.action_homeFragment_to_reversePyramidCalculatorFragment)
+                }
+                "Tabata" -> {
+                    findNavController().navigate(R.id.action_homeFragment_to_tabataFragment)
                 }
                 // Add more cases for each calculator card
             }

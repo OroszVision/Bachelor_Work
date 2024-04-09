@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Toolbar -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        android:layout_alignParentTop="true" />
+
+    <!-- Main content layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/toolbar"
+        android:padding="16dp">
+
+        <!-- Weight input section -->
+        <LinearLayout
+            android:id="@+id/weightInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp">
+
+            <!-- EditText for starting weight -->
+            <EditText
+                android:id="@+id/starting_weight_edittext"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:layout_marginStart="8dp"
+                android:hint="Enter starting weight:"
+                android:inputType="numberDecimal"
+                android:minHeight="48dp"
+                android:paddingTop="40dp"
+                android:layout_marginBottom="20dp"/>
+
+        </LinearLayout>
+
+        <!-- Number of Sets TextView -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp">
+
+            <!-- TextView for "Starting Reps" -->
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Starting Reps:"
+                android:textStyle="bold"
+                android:textSize="18dp"
+                android:gravity="center"/>
+
+            <!-- TextView for "Number of Sets" -->
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Number of Sets:"
+                android:textStyle="bold"
+                android:textSize="18dp"
+                android:layout_gravity="center"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <!-- NumberPicker for starting reps -->
+            <NumberPicker
+                android:id="@+id/starting_reps_picker"
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1" />
+
+            <!-- NumberPicker for number of sets -->
+            <NumberPicker
+                android:id="@+id/num_sets_picker"
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <!-- Percentage Increase TextView -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Weight Increase Percentage:"
+            android:textStyle="bold"
+            android:textSize="18dp" />
+
+        <!-- NumberPicker for choosing percentage increase -->
+        <NumberPicker
+            android:id="@+id/percentage_increase_picker"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginTop="16dp" />
+
+        <!-- Button to calculate basic pyramid -->
+        <Button
+            android:id="@+id/calculate_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Calculate Pyramid"
+            android:layout_marginTop="16dp" />
+
+        <!-- Button to toggle the weight table -->
+        <Button
+            android:id="@+id/toggleTableButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Show Weight Table"
+            android:layout_marginTop="16dp"
+            android:layout_gravity="bottom" />
+
+    </LinearLayout>
+
+    <!-- Transparent background overlay -->
+    <View
+        android:id="@+id/backgroundOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#80000000"
+        android:visibility="gone"
+        android:layout_below="@id/toolbar" />
+
+</RelativeLayout>
