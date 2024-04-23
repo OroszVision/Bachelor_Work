@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.NumberPicker
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -25,6 +26,7 @@ class OneRepMaxCalculatorFragment : Fragment() {
     private lateinit var weightTableDialog: BottomSheetDialog
     private lateinit var weightRecyclerView: RecyclerView
     private lateinit var closeButton: Button
+    private lateinit var exportButton: Button
     private lateinit var backgroundOverlay: View
 
     override fun onCreateView(
@@ -38,7 +40,15 @@ class OneRepMaxCalculatorFragment : Fragment() {
         weightTableDialog.setContentView(R.layout.dialog_weight_table)
         weightRecyclerView = weightTableDialog.findViewById(R.id.weightRecyclerView)!!
         closeButton = weightTableDialog.findViewById(R.id.closeButton)!!
+        exportButton = weightTableDialog.findViewById(R.id.exportButton)!!
         backgroundOverlay = view.findViewById(R.id.backgroundOverlay)
+
+
+        // Find the TextView for the title
+        val dialogTitleTextView = weightTableDialog.findViewById<TextView>(R.id.dialogTitleTextView)
+        // Set the title text
+        dialogTitleTextView?.text = "One Rep Max Calculator"
+
 
         // Set onClickListener for the toggle table button
         view.findViewById<Button>(R.id.toggleTableButton).setOnClickListener {
@@ -71,6 +81,14 @@ class OneRepMaxCalculatorFragment : Fragment() {
             calculateOneRepMax("Lombardi")
             toggleWeightTableDialog()
         }
+
+        val exportButton = weightTableDialog.findViewById<Button>(R.id.exportButton)
+        exportButton?.setOnClickListener {
+            val adapter = weightRecyclerView.adapter as WeightAdapter
+            val fragmentName = "One Rep Max Calculator" // Change this to the name of your fragment
+            ToolbarHelper.exportDialogToPDF(requireContext(), weightTableDialog, adapter, "dialog_export.pdf", fragmentName)
+        }
+
 
         return view
     }

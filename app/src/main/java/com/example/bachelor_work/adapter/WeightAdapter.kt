@@ -30,5 +30,9 @@ class WeightAdapter(private val weightList: List<WeightItem>) : RecyclerView.Ada
         holder.weightTextView.text = if (currentItem.weight != -1.0) "${currentItem.weight} kg" else "#"
     }
 
+    fun getItems(): List<WeightItem> {
+        return weightList
+    }
+
     override fun getItemCount() = weightList.size
 }
