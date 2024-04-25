@@ -51,5 +51,6 @@ dependencies {
     implementation ("androidx.navigation:navigation-fragment-ktx:2.4.0")
     implementation ("androidx.navigation:navigation-ui-ktx:2.4.0")
     implementation ("com.itextpdf:itext7-core:7.1.15")
+    implementation ("com.google.code.gson:gson:2.8.8")
 
 }

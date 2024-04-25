@@ -13,10 +13,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bachelor_work.R
 import com.example.bachelor_work.adapter.WeightAdapter
+import com.example.bachelor_work.model.DialogInfo
 import com.example.bachelor_work.model.WeightItem
+import com.example.bachelor_work.utils.DialogStorage
 import com.example.bachelor_work.utils.ToolbarHelper
 import com.example.bachelor_work.utils.ToolbarHelper.Companion.round
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 import kotlin.math.pow
 
 class OneRepMaxCalculatorFragment : Fragment() {
@@ -28,6 +33,8 @@ class OneRepMaxCalculatorFragment : Fragment() {
     private lateinit var closeButton: Button
     private lateinit var exportButton: Button
     private lateinit var backgroundOverlay: View
+
+    private lateinit var dialogStorage: DialogStorage
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,12 +50,12 @@ class OneRepMaxCalculatorFragment : Fragment() {
         exportButton = weightTableDialog.findViewById(R.id.exportButton)!!
         backgroundOverlay = view.findViewById(R.id.backgroundOverlay)
 
+        dialogStorage = DialogStorage(requireContext())
 
         // Find the TextView for the title
         val dialogTitleTextView = weightTableDialog.findViewById<TextView>(R.id.dialogTitleTextView)
         // Set the title text
         dialogTitleTextView?.text = "One Rep Max Calculator"
-
 
         // Set onClickListener for the toggle table button
         view.findViewById<Button>(R.id.toggleTableButton).setOnClickListener {
@@ -89,7 +96,6 @@ class OneRepMaxCalculatorFragment : Fragment() {
             ToolbarHelper.exportDialogToPDF(requireContext(), weightTableDialog, adapter, "dialog_export.pdf", fragmentName)
         }
 
-
         return view
     }
 
@@ -128,10 +134,16 @@ class OneRepMaxCalculatorFragment : Fragment() {
             weightRecyclerView.layoutManager = LinearLayoutManager(requireContext())
             weightRecyclerView.adapter = adapter
 
+            // Store dialog with calculation result and timestamp
+            val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
+            val timestampString = dateFormat.format(Date())
+            storeDialog(timestampString, weightItems)
+
         } else {
             // Handle invalid weight input
         }
     }
+
 
     private fun calculateRepetitionsForPercentage(percentage: Int): Int {
         return when (percentage) {
@@ -165,4 +177,12 @@ class OneRepMaxCalculatorFragment : Fragment() {
     private fun calculateLombardiOneRepMax(weight: Double, repetitions: Int): Double {
         return weight * repetitions.toDouble().pow(0.10)
     }
+
+    private fun storeDialog(timestamp: String, weightItems: List<WeightItem>) {
+        // Create DialogInfo object with necessary data and store it using dialogStorage
+        val dialogInfo = DialogInfo("One Rep Max Calculator", timestamp, weightItems)
+        dialogStorage.storeDialog(dialogInfo)
+    }
+
+
 }
