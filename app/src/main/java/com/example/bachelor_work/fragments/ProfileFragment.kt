@@ -1,60 +1,133 @@
-package com.example.bachelor_work.fragments
+    package com.example.bachelor_work.fragments
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import com.example.bachelor_work.R
+    import com.example.bachelor_work.adapter.StrengthMetricsAdapter
+    import android.app.Dialog
+    import android.os.Bundle
+    import android.view.LayoutInflater
+    import android.view.View
+    import android.view.ViewGroup
+    import android.widget.Button
+    import android.widget.EditText
+    import android.widget.Toast
+    import androidx.fragment.app.Fragment
+    import androidx.recyclerview.widget.LinearLayoutManager
+    import androidx.recyclerview.widget.RecyclerView
+    import com.example.bachelor_work.R
+    import com.example.bachelor_work.model.StrengthMetric
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+    class ProfileFragment : Fragment(), StrengthMetricsAdapter.EditableStrengthMetricProvider {
+        private lateinit var strengthMetricsRecyclerView: RecyclerView
+        private lateinit var strengthMetricsAdapter: StrengthMetricsAdapter
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ProfileFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class ProfileFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+        override fun onCreateView(
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
+        ): View? {
+            val view = inflater.inflate(R.layout.fragment_profile, container, false)
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+            // Initialize RecyclerView
+            strengthMetricsRecyclerView = view.findViewById(R.id.strengthMetricsRecyclerView)
+            strengthMetricsRecyclerView.layoutManager = LinearLayoutManager(context)
+
+            // Initialize adapter with sample data
+            strengthMetricsAdapter = StrengthMetricsAdapter(getSampleStrengthMetrics())
+            strengthMetricsAdapter.setEditableStrengthMetricProvider(this)
+            strengthMetricsRecyclerView.adapter = strengthMetricsAdapter
+
+            // Set click listener for "Add Strength Metric" button
+            view.findViewById<Button>(R.id.addStrengthMetricButton).setOnClickListener {
+                showAddStrengthMetricDialog()
+            }
+
+            strengthMetricsAdapter.setOnItemClickListener(object : StrengthMetricsAdapter.OnItemClickListener {
+                override fun onItemClick(strengthMetric: StrengthMetric) {
+                    showEditStrengthMetricDialog(strengthMetric)
+                }
+            })
+
+
+            return view
         }
-    }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false)
-    }
+        // Function to provide sample data for strength metrics
+        private fun getSampleStrengthMetrics(): MutableList<StrengthMetric> {
+            val strengthMetricsList = mutableListOf<StrengthMetric>()
+            strengthMetricsList.add(StrengthMetric("Bench Press", 100.0))
+            strengthMetricsList.add(StrengthMetric("Squat", 120.0))
+            // Add more sample strength metrics as needed
+            return strengthMetricsList
+        }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ProfileFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ProfileFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+        private fun showAddStrengthMetricDialog() {
+            val dialog = Dialog(requireContext())
+            dialog.setContentView(R.layout.dialog_add_strength_metric)
+            val saveButton = dialog.findViewById<Button>(R.id.saveButton)
+            val cancelButton = dialog.findViewById<Button>(R.id.cancelButton)
+
+            saveButton.setOnClickListener {
+                // Retrieve entered data from EditText fields
+                val exerciseNameEditText = dialog.findViewById<EditText>(R.id.exerciseNameEditText)
+                val maxLiftEditText = dialog.findViewById<EditText>(R.id.maxLiftEditText)
+                val name = exerciseNameEditText.text.toString()
+                val value = maxLiftEditText.text.toString().toDoubleOrNull()
+
+                // Validate entered data
+                if (name.isNotEmpty() && value != null) {
+                    // Add the new strength metric to the RecyclerView
+                    val newStrengthMetric = StrengthMetric(name, value)
+                    strengthMetricsAdapter.addStrengthMetric(newStrengthMetric)
+                    dialog.dismiss()
+                } else {
+                    // Show error message if data is invalid
+                    Toast.makeText(requireContext(), "Invalid input. Please enter valid data.", Toast.LENGTH_SHORT).show()
                 }
             }
+
+            cancelButton.setOnClickListener {
+                // Dismiss the dialog if Cancel button is clicked
+                dialog.dismiss()
+            }
+
+            dialog.show()
+        }
+
+        override fun showEditStrengthMetricDialog(strengthMetric: StrengthMetric) {
+            val dialog = Dialog(requireContext())
+            dialog.setContentView(R.layout.dialog_add_strength_metric)
+            val saveButton = dialog.findViewById<Button>(R.id.saveButton)
+            val cancelButton = dialog.findViewById<Button>(R.id.cancelButton)
+            val exerciseNameEditText = dialog.findViewById<EditText>(R.id.exerciseNameEditText)
+            val maxLiftEditText = dialog.findViewById<EditText>(R.id.maxLiftEditText)
+
+            // Set existing data to EditText fields
+            exerciseNameEditText.setText(strengthMetric.exerciseName)
+            maxLiftEditText.setText(strengthMetric.maxLift.toString())
+
+            saveButton.setOnClickListener {
+                // Retrieve entered data from EditText fields
+                val name = exerciseNameEditText.text.toString()
+                val value = maxLiftEditText.text.toString().toDoubleOrNull()
+
+                // Validate entered data
+                if (name.isNotEmpty() && value != null) {
+                    // Update the strength metric data in the RecyclerView
+                    val updatedStrengthMetric = StrengthMetric(name, value)
+                    strengthMetricsAdapter.updateStrengthMetric(strengthMetric, updatedStrengthMetric)
+                    dialog.dismiss()
+                } else {
+                    // Show error message if data is invalid
+                    Toast.makeText(requireContext(), "Invalid input. Please enter valid data.", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            cancelButton.setOnClickListener {
+                // Dismiss the dialog if Cancel button is clicked
+                dialog.dismiss()
+            }
+
+            dialog.show()
+        }
+
+
     }
-}

@@ -1,12 +1,10 @@
 package com.example.bachelor_work.utils
 import android.content.Context
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.RecyclerView
 import com.example.bachelor_work.R
 import com.example.bachelor_work.adapter.WeightAdapter
 import com.google.android.material.bottomsheet.BottomSheetDialog

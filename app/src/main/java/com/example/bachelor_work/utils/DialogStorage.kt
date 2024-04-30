@@ -17,7 +17,24 @@ class DialogStorage(private val context: Context) {
         try {
             val file = File(context.filesDir, FILE_NAME)
             val dialogList = retrieveDialogs().toMutableList()
-            dialogList.add(dialogInfo)
+
+            // Add the new dialog to the beginning of the list
+            dialogList.add(0, dialogInfo)
+
+            // Limit the list to 10 newest dialogs
+            if (dialogList.size > 10) {
+                // Sort the list based on timestamp (assuming timestamp is a comparable property)
+                dialogList.sortByDescending { it.timestamp }
+
+                // Remove excess dialogs beyond the 5th position
+                val excessDialogs = dialogList.subList(10, dialogList.size)
+                excessDialogs.forEach { dialogToRemove ->
+                    // Implement logic to delete dialog from file or perform any cleanup needed
+                    // For example, you can perform any necessary cleanup related to the dialog here
+                }
+                dialogList.removeAll(excessDialogs)
+            }
+
             val jsonString = Gson().toJson(dialogList)
             FileOutputStream(file).use { it.write(jsonString.toByteArray()) }
             Log.d(TAG, "Dialog stored successfully")
@@ -25,6 +42,7 @@ class DialogStorage(private val context: Context) {
             Log.e(TAG, "Error storing dialog: ${e.message}")
         }
     }
+
 
     fun retrieveDialogs(): List<DialogInfo> {
         try {
