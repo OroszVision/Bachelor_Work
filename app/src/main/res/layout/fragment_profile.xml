@@ -133,6 +133,60 @@
                     </LinearLayout>
                 </LinearLayout>
 
+                <!-- Third Row of Measurements -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="16dp">
+
+                    <!-- Blood Pressure -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Blood Pressure"
+                            android:textStyle="bold"/>
+                        <EditText
+                            android:id="@+id/bloodPressureEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Enter Your BP"
+                            android:inputType="numberDecimal"
+                            android:maxLines="1"
+                            android:maxLength="6"/>
+                    </LinearLayout>
+
+                    <!-- Heart Rate -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_marginStart="8dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Heart Rate"
+                            android:textStyle="bold"/>
+                        <EditText
+                            android:id="@+id/heartRateEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Enter Your HR"
+                            android:inputType="numberDecimal"
+                            android:maxLines="1"
+                            android:maxLength="6"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+
                 <!-- Circumference Measurements -->
                 <TextView
                     android:layout_width="wrap_content"

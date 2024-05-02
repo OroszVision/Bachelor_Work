@@ -65,6 +65,10 @@
             val saveButton = dialog.findViewById<Button>(R.id.saveButton)
             val cancelButton = dialog.findViewById<Button>(R.id.cancelButton)
 
+            // Set dialog window dimensions
+            val window = dialog.window
+            window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+
             saveButton.setOnClickListener {
                 // Retrieve entered data from EditText fields
                 val exerciseNameEditText = dialog.findViewById<EditText>(R.id.exerciseNameEditText)
@@ -92,6 +96,7 @@
             dialog.show()
         }
 
+
         override fun showEditStrengthMetricDialog(strengthMetric: StrengthMetric) {
             val dialog = Dialog(requireContext())
             dialog.setContentView(R.layout.dialog_add_strength_metric)
@@ -99,6 +104,10 @@
             val cancelButton = dialog.findViewById<Button>(R.id.cancelButton)
             val exerciseNameEditText = dialog.findViewById<EditText>(R.id.exerciseNameEditText)
             val maxLiftEditText = dialog.findViewById<EditText>(R.id.maxLiftEditText)
+
+            // Set dialog window dimensions
+            val window = dialog.window
+            window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
 
             // Set existing data to EditText fields
             exerciseNameEditText.setText(strengthMetric.exerciseName)
@@ -128,6 +137,5 @@
 
             dialog.show()
         }
-
 
     }

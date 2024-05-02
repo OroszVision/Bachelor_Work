@@ -1,6 +1,5 @@
 package com.example.bachelor_work.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,7 +42,6 @@ class StrengthMetricsAdapter(private val strengthMetrics: MutableList<StrengthMe
         init {
             // Set OnClickListener to open edit dialog when item is clicked
             itemView.setOnClickListener {
-                Log.d("StrengthMetricsAdapter", "Item clicked")
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     val strengthMetric = strengthMetrics[position]
@@ -51,7 +49,6 @@ class StrengthMetricsAdapter(private val strengthMetrics: MutableList<StrengthMe
                 }
             }
         }
-
 
         fun bind(strengthMetric: StrengthMetric) {
             nameTextView.text = strengthMetric.exerciseName
