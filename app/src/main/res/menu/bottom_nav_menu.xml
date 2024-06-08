@@ -22,6 +22,6 @@
         android:icon="@drawable/baseline_person_24"/>
 
     <item android:title="@string/more"
-        android:id="@+id/navMore"
+        android:id="@+id/navStatistics"
         android:icon="@drawable/baseline_more_horiz_24"/>
 </menu>

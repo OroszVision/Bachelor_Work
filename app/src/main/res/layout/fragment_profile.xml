@@ -1,5 +1,5 @@
 <!-- fragment_profile.xml -->
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -306,79 +306,79 @@
 
         <!-- Strength Metrics CardView -->
         <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:id="@+id/strengthMetricsCardView">
-
-            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
+                android:layout_margin="16dp">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Strength Metrics"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="8dp"/>
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Strength Metrics"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="8dp"/>
 
+                <!-- Strength Metrics RecyclerView -->
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/strengthMetricsRecyclerView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                        android:id="@+id/strengthMetricsRecyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                     />
 
 
-                <!-- Add Section Button -->
+                <!-- Add Strength Metric Button -->
                 <Button
-                    android:id="@+id/addStrengthMetricButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Add Section"
-                    android:layout_below="@id/strengthMetricsCardView"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="16dp"
-                    android:layout_gravity="center"/>
+                        android:id="@+id/addStrengthMetricButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Add Strength Metric"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="16dp"/>
+
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
         <!-- Health Metrics CardView -->
         <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp">
-
-            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
+                android:layout_margin="16dp">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Health Metrics"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="8dp"/>
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Health Metrics"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="8dp"/>
 
+                <!-- Health Metrics RecyclerView -->
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/healthMetricsRecyclerView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                        android:id="@+id/healthMetricsRecyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
 
-
+                <!-- Add Health Metric Button -->
                 <Button
-                    android:id="@+id/addHealthMetricButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Add Section"
-                    android:layout_below="@id/strengthMetricsCardView"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="16dp"
-                    android:layout_gravity="center"/>
+                        android:id="@+id/addHealthMetricButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Add Section"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="16dp"
+                        android:layout_gravity="center"/>
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -414,7 +414,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Add Section"
-                    android:layout_below="@id/strengthMetricsCardView"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="16dp"
                     android:layout_gravity="center"/>
@@ -451,7 +450,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Add Section"
-                    android:layout_below="@id/strengthMetricsCardView"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="16dp"
                     android:layout_gravity="center"/>
@@ -488,7 +486,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Add Section"
-                    android:layout_below="@id/strengthMetricsCardView"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="16dp"
                     android:layout_gravity="center"/>
@@ -496,5 +493,13 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
+        <Button
+                android:id="@+id/saveButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Save"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"/>
+
     </LinearLayout>
-</ScrollView>
+</androidx.core.widget.NestedScrollView>

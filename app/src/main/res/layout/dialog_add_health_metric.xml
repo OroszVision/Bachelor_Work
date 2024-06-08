@@ -1,65 +1,71 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/healthMetricCardView"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    app:cardCornerRadius="8dp"
-    app:cardElevation="4dp"
-    android:clickable="true"
-    android:focusable="true">
-
-    <LinearLayout
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="16dp">
 
-        <EditText
+    <!-- Title -->
+    <TextView
+            android:id="@+id/healthMetricsTitleTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add Health Metric"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp"/>
+
+    <!-- Health Metric Name EditText -->
+    <EditText
             android:id="@+id/healthMetricNameEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Health Metric Name"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:padding="8dp"
-            android:background="?android:attr/selectableItemBackground"/>
+          />
 
-        <EditText
+    <!-- Value TextView -->
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Value"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"/>
+
+    <!-- Value EditText -->
+    <EditText
             android:id="@+id/valueEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter your value"
+            android:hint="Value"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:padding="8dp"
-            android:background="?android:attr/selectableItemBackground"/>
+          />
 
-
-        <!-- Save and Cancel buttons -->
-        <LinearLayout
+    <!-- Save and Cancel buttons -->
+    <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_marginTop="24dp"
             android:gravity="end">
 
-            <Button
+        <Button
                 android:id="@+id/saveButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Save"
                 android:textColor="@android:color/white" />
 
-            <Button
+        <Button
                 android:id="@+id/cancelButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Cancel"
                 android:textColor="@android:color/white" />
 
-        </LinearLayout>
-
-
     </LinearLayout>
 
-</androidx.cardview.widget.CardView>
+</LinearLayout>

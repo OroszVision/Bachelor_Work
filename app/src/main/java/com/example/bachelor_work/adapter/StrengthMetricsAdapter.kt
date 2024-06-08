@@ -11,18 +11,17 @@ import com.example.bachelor_work.model.StrengthMetric
 class StrengthMetricsAdapter(private val strengthMetrics: MutableList<StrengthMetric>) :
     RecyclerView.Adapter<StrengthMetricsAdapter.StrengthMetricViewHolder>() {
 
-    private lateinit var editableStrengthMetricProvider: EditableStrengthMetricProvider
-    private lateinit var itemClickListener: OnItemClickListener
-
-    // Interface to provide access to edit strength metric dialog
+    // Define listener interfaces
     interface EditableStrengthMetricProvider {
         fun showEditStrengthMetricDialog(strengthMetric: StrengthMetric)
     }
 
-    // Interface to handle item click events
     interface OnItemClickListener {
         fun onItemClick(strengthMetric: StrengthMetric)
     }
+
+    private lateinit var editableStrengthMetricProvider: EditableStrengthMetricProvider
+    private lateinit var itemClickListener: OnItemClickListener
 
     // Method to set the click listener
     fun setOnItemClickListener(listener: OnItemClickListener) {
@@ -36,8 +35,8 @@ class StrengthMetricsAdapter(private val strengthMetrics: MutableList<StrengthMe
 
     // ViewHolder class
     inner class StrengthMetricViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val nameTextView: TextView = itemView.findViewById(R.id.exerciseNameTextView)
-        private val valueTextView: TextView = itemView.findViewById(R.id.maxLiftTextView)
+        private val nameTextView: TextView = itemView.findViewById(R.id.metricTitleTextView)
+        private val valueTextView: TextView = itemView.findViewById(R.id.metricValueTextView)
 
         init {
             // Set OnClickListener to open edit dialog when item is clicked
@@ -75,7 +74,7 @@ class StrengthMetricsAdapter(private val strengthMetrics: MutableList<StrengthMe
     // Function to add a new strength metric
     fun addStrengthMetric(strengthMetric: StrengthMetric) {
         strengthMetrics.add(strengthMetric)
-        notifyDataSetChanged()
+        notifyItemInserted(strengthMetrics.size - 1) // Notify adapter about the new item
     }
 
     // Function to update an existing strength metric
@@ -83,7 +82,11 @@ class StrengthMetricsAdapter(private val strengthMetrics: MutableList<StrengthMe
         val position = strengthMetrics.indexOf(oldStrengthMetric)
         if (position != -1) {
             strengthMetrics[position] = newStrengthMetric
-            notifyItemChanged(position)
+            notifyItemChanged(position) // Notify adapter about the changed item
         }
+    }
+
+    fun getStrengthMetrics(): MutableList<StrengthMetric> {
+        return strengthMetrics
     }
 }

@@ -49,10 +49,10 @@
     </fragment>
 
     <fragment
-        android:id="@+id/moreFragment"
-        android:name="com.example.bachelor_work.fragments.MoreFragment"
+        android:id="@+id/statisticsFragment"
+        android:name="com.example.bachelor_work.fragments.StatisticsFragment"
         android:label="Home"
-        tools:layout="@layout/fragment_more" />
+        tools:layout="@layout/fragment_statistics" />
 
     <fragment
         android:id="@+id/oneRepMaxCalculatorFragment"
