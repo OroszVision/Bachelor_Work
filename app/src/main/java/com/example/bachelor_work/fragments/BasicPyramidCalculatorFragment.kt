@@ -1,21 +1,25 @@
 package com.example.bachelor_work.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.NumberPicker
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bachelor_work.R
 import com.example.bachelor_work.adapter.WeightAdapter
+import com.example.bachelor_work.model.DialogInfo
 import com.example.bachelor_work.model.WeightItem
-import com.example.bachelor_work.utils.ToolbarHelper
-import com.example.bachelor_work.utils.ToolbarHelper.Companion.round
+import com.example.bachelor_work.utils.DialogStorage
+import com.example.bachelor_work.utils.ToolBarHelper.Companion.round
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class BasicPyramidCalculatorFragment : Fragment() {
 
@@ -28,6 +32,8 @@ class BasicPyramidCalculatorFragment : Fragment() {
     private lateinit var weightRecyclerView: RecyclerView
     private lateinit var closeButton: Button
     private lateinit var backgroundOverlay: View
+    private lateinit var dialogStorage: DialogStorage
+    private lateinit var exportButton: Button
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,11 +54,13 @@ class BasicPyramidCalculatorFragment : Fragment() {
         weightTableDialog.setContentView(dialogView)
         weightRecyclerView = dialogView.findViewById(R.id.weightRecyclerView)!!
         closeButton = dialogView.findViewById(R.id.closeButton)
+        exportButton = dialogView.findViewById(R.id.exportButton)
 
         setupPickers()
 
+        dialogStorage = DialogStorage(requireContext())
+
         super.onViewCreated(view, savedInstanceState)
-        ToolbarHelper.setupToolbar(this, view)
 
         calculateButton.setOnClickListener {
             calculatePyramid()
@@ -61,6 +69,14 @@ class BasicPyramidCalculatorFragment : Fragment() {
 
         closeButton.setOnClickListener {
             toggleWeightTableDialog()
+        }
+
+        exportButton.setOnClickListener {
+            val adapter = weightRecyclerView.adapter as WeightAdapter
+            val fragmentName = "Basic Pyramid Calculator"
+            val timestamp = System.currentTimeMillis().toString()
+            val fileName = "BasicPyramid_$timestamp.pdf"
+            dialogStorage.exportDialogToPDF(requireContext(), adapter, fileName, fragmentName)
         }
 
         return view
@@ -98,54 +114,50 @@ class BasicPyramidCalculatorFragment : Fragment() {
 
         if (startingWeight != null) {
             val repsList = calculateRepsForPyramid(startingWeight, startingReps, numSets, weightIncreasePercentage)
-            populateRecyclerView(repsList, startingWeight, weightIncreasePercentage)
+            val weightList = populateRecyclerView(repsList, startingWeight, weightIncreasePercentage)
+
+            // Store dialog with calculation result and timestamp
+            val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
+            val timestampString = dateFormat.format(Date())
+            storeDialog(timestampString, weightList)
         }
     }
 
-    private fun populateRecyclerView(repsList: List<Int>, startingWeight: Double, weightIncreasePercentage: Double) {
+    private fun populateRecyclerView(repsList: List<Int>, startingWeight: Double, weightIncreasePercentage: Double): List<WeightItem> {
         val weightList = mutableListOf<WeightItem>()
         var currentWeight = startingWeight
 
         for ((index, reps) in repsList.withIndex()) {
-            // Calculate weight for the current set
             val weightForSet = currentWeight * (1 + weightIncreasePercentage * index / 100)
-
-            // Calculate percentage weight for the current set
             val percentageWeight = 100 + weightIncreasePercentage * index
-
-            // Add WeightItem with all information
             weightList.add(WeightItem(percentageWeight.toInt(), index + 1, reps, weightForSet.round(2)))
-
-            // Increase weight for the next set
             currentWeight *= (1 + weightIncreasePercentage / 100)
         }
 
         val adapter = WeightAdapter(weightList)
         weightRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         weightRecyclerView.adapter = adapter
+
+        return weightList
     }
 
     private fun calculateRepsForPyramid(startingWeight: Double, startingReps: Int, numSets: Int, weightIncreasePercentage: Double): List<Int> {
         val repsList = mutableListOf<Int>()
-
         var currentWeight = startingWeight
         var currentReps = startingReps
 
-        // Calculate reps for each set
         for (i in 0 until numSets) {
-            // Calculate weight for the current set
             val weightForSet = currentWeight * (1 + weightIncreasePercentage * i / 100)
-
-            // Calculate estimated reps for the current set
             val repsForSet = (currentReps * (startingWeight / weightForSet)).toInt()
-
-            // Add the reps to the list
             repsList.add(repsForSet)
-
-            // Decrease weight for the next set
             currentWeight *= (1 + weightIncreasePercentage / 100)
         }
 
         return repsList
+    }
+
+    private fun storeDialog(timestamp: String, weightItems: List<WeightItem>) {
+        val dialogInfo = DialogInfo("Basic Pyramid Calculator", timestamp, weightItems)
+        dialogStorage.storeDialog(dialogInfo)
     }
 }

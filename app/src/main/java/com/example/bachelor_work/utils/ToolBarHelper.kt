@@ -23,7 +23,7 @@ import java.io.File
 import java.io.FileOutputStream
 import kotlin.math.round
 
-class ToolbarHelper {
+class ToolBarHelper {
 
     companion object {
         fun setupToolbar(fragment: Fragment, view: View) {

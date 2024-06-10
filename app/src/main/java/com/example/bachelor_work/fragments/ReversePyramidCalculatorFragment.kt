@@ -12,10 +12,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bachelor_work.R
 import com.example.bachelor_work.adapter.WeightAdapter
+import com.example.bachelor_work.model.DialogInfo
 import com.example.bachelor_work.model.WeightItem
-import com.example.bachelor_work.utils.ToolbarHelper
-import com.example.bachelor_work.utils.ToolbarHelper.Companion.round
+import com.example.bachelor_work.utils.DialogStorage
+import com.example.bachelor_work.utils.ToolBarHelper.Companion.round
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class ReversePyramidCalculatorFragment : Fragment() {
 
@@ -28,6 +32,9 @@ class ReversePyramidCalculatorFragment : Fragment() {
     private lateinit var weightRecyclerView: RecyclerView
     private lateinit var closeButton: Button
     private lateinit var backgroundOverlay: View
+    private lateinit var exportButton: Button
+
+    private lateinit var dialogStorage: DialogStorage
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,11 +55,13 @@ class ReversePyramidCalculatorFragment : Fragment() {
         weightTableDialog.setContentView(dialogView)
         weightRecyclerView = dialogView.findViewById(R.id.weightRecyclerView)!!
         closeButton = dialogView.findViewById(R.id.closeButton)
+        exportButton = dialogView.findViewById(R.id.exportButton)
 
         setupPickers()
 
+        dialogStorage = DialogStorage(requireContext())
+
         super.onViewCreated(view, savedInstanceState)
-        ToolbarHelper.setupToolbar(this, view)
 
         calculateButton.setOnClickListener {
             calculateReversePyramid()
@@ -61,6 +70,14 @@ class ReversePyramidCalculatorFragment : Fragment() {
 
         closeButton.setOnClickListener {
             toggleWeightTableDialog()
+        }
+
+        exportButton.setOnClickListener {
+            val adapter = weightRecyclerView.adapter as WeightAdapter
+            val fragmentName = "Reverse Pyramid Calculator"
+            val timestamp = System.currentTimeMillis().toString()
+            val fileName = "ReversePyramid_$timestamp.pdf"
+            dialogStorage.exportDialogToPDF(requireContext(), adapter, fileName, fragmentName)
         }
 
         return view
@@ -98,11 +115,16 @@ class ReversePyramidCalculatorFragment : Fragment() {
 
         if (startingWeight != null) {
             val repsList = calculateRepsForReversePyramid(startingWeight, startingReps, numSets, weightDecreasePercentage)
-            populateRecyclerView(repsList, startingWeight, weightDecreasePercentage)
+            val weightList = populateRecyclerView(repsList, startingWeight, weightDecreasePercentage)
+
+            // Store dialog with calculation result and timestamp
+            val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
+            val timestampString = dateFormat.format(Date())
+            storeDialog(timestampString, weightList)
         }
     }
 
-    private fun populateRecyclerView(repsList: List<Int>, startingWeight: Double, weightDecreasePercentage: Double) {
+    private fun populateRecyclerView(repsList: List<Int>, startingWeight: Double, weightDecreasePercentage: Double): List<WeightItem> {
         val weightList = mutableListOf<WeightItem>()
         var currentWeight = startingWeight
 
@@ -123,6 +145,8 @@ class ReversePyramidCalculatorFragment : Fragment() {
         val adapter = WeightAdapter(weightList)
         weightRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         weightRecyclerView.adapter = adapter
+
+        return weightList
     }
 
     private fun calculateRepsForReversePyramid(startingWeight: Double, startingReps: Int, numSets: Int, weightDecreasePercentage: Double): List<Int> {
@@ -149,4 +173,9 @@ class ReversePyramidCalculatorFragment : Fragment() {
         return repsList
     }
 
+    private fun storeDialog(timestamp: String, weightItems: List<WeightItem>) {
+        // Create DialogInfo object with necessary data and store it using dialogStorage
+        val dialogInfo = DialogInfo("Reverse Pyramid Calculator", timestamp, weightItems)
+        dialogStorage.storeDialog(dialogInfo)
+    }
 }

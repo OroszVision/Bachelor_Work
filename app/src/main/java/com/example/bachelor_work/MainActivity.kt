@@ -1,20 +1,20 @@
 package com.example.bachelor_work
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
-import androidx.appcompat.widget.Toolbar
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var bottomNavigationView: BottomNavigationView
-    private lateinit var toolbar: Toolbar
+    private lateinit var toolbar: androidx.appcompat.widget.Toolbar
+    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,10 +22,13 @@ class MainActivity : AppCompatActivity() {
 
         bottomNavigationView = findViewById(R.id.bottomNavigationBar)
         toolbar = findViewById(R.id.topToolbar)
+        navController = findNavController(R.id.nav_host_fragment)
+
+        setSupportActionBar(toolbar)
 
         // Set up navigation
-        val navController = findNavController(R.id.nav_host_fragment)
         bottomNavigationView.setupWithNavController(navController)
+        setupActionBarWithNavController(navController)
 
         // Listen for navigation changes
         navController.addOnDestinationChangedListener { _, destination, _ ->
@@ -33,9 +36,11 @@ class MainActivity : AppCompatActivity() {
             when (destination.id) {
                 R.id.homeFragment, R.id.historyFragment, R.id.profileFragment, R.id.statisticsFragment, R.id.timerFragment -> {
                     bottomNavigationView.visibility = View.VISIBLE
+                    supportActionBar?.setDisplayHomeAsUpEnabled(false)
                 }
                 else -> {
                     bottomNavigationView.visibility = View.GONE
+                    supportActionBar?.setDisplayHomeAsUpEnabled(true)
                 }
             }
         }
@@ -73,24 +78,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.dropdown_menu, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.action_settings -> {
-                // Handle settings item click
-                true
-            }
-            R.id.action_guide -> {
-                // Handle guide item click
-                true
-            }
-            // Add more menu items here if needed
-            else -> super.onOptionsItemSelected(item)
-        }
+    override fun onSupportNavigateUp(): Boolean {
+        return navController.navigateUp() || super.onSupportNavigateUp()
     }
 
     private fun showPopupMenu(view: View) {

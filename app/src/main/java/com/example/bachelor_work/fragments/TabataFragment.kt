@@ -10,7 +10,6 @@ import android.widget.NumberPicker
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.bachelor_work.R
-import com.example.bachelor_work.utils.ToolbarHelper
 
 class TabataFragment : Fragment() {
 
@@ -61,8 +60,6 @@ class TabataFragment : Fragment() {
         restTimePicker.minValue = 10
         restTimePicker.maxValue = 60
 
-        setsRemaining = setsPicker.value // Initialize setsRemaining here
-
         startButton.setOnClickListener {
             if (!isTimerRunning) {
                 startPreparationTimer()
@@ -72,7 +69,6 @@ class TabataFragment : Fragment() {
         }
 
         super.onViewCreated(view, savedInstanceState)
-        ToolbarHelper.setupToolbar(this, view)
 
         stopButton.setOnClickListener {
             stopTabata()
@@ -116,6 +112,7 @@ class TabataFragment : Fragment() {
 
         val workoutTimeSeconds = workoutTimePicker.value * 1000L
         val restTimeSeconds = restTimePicker.value * 1000L
+        setsRemaining = setsPicker.value // Initialize setsRemaining here
         val totalSets = setsPicker.value
 
         setsRemainingTextView.text = "Sets remaining: $setsRemaining"

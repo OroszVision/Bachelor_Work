@@ -1,125 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
-
-    <!-- Toolbar -->
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        android:elevation="4dp"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        android:layout_alignParentTop="true" />
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/toolbar"
-        android:orientation="vertical"
-        android:padding="16dp">
-
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp">
 
         <TextView
-            android:id="@+id/setsTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Number of Sets:"
-            android:textSize="18sp" />
+                android:id="@+id/setsTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Number of Sets:"
+                android:textSize="18sp" />
 
         <NumberPicker
-            android:id="@+id/setsPicker"
-            android:layout_width="match_parent"
-            android:layout_height="91dp"
-            android:layout_marginBottom="16dp"
-            android:max="10"
-            android:min="1" />
+                android:id="@+id/setsPicker"
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:layout_marginBottom="16dp"
+                android:max="10"
+                android:min="1" />
 
         <TextView
-            android:id="@+id/workoutTimeLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Workout Time (seconds):"
-            android:textSize="18sp" />
+                android:id="@+id/workoutTimeLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Workout Time (seconds):"
+                android:textSize="18sp" />
 
         <NumberPicker
-            android:id="@+id/workoutTimePicker"
-            android:layout_width="match_parent"
-            android:layout_height="66dp"
-            android:layout_marginBottom="16dp"
-            android:max="600"
-            android:min="10" />
+                android:id="@+id/workoutTimePicker"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:layout_marginBottom="16dp"
+                android:max="600"
+                android:min="10" />
 
         <TextView
-            android:id="@+id/restTimeLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Rest Time (seconds):"
-            android:textSize="18sp" />
+                android:id="@+id/restTimeLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rest Time (seconds):"
+                android:textSize="18sp" />
 
         <NumberPicker
-            android:id="@+id/restTimePicker"
-            android:layout_width="match_parent"
-            android:layout_height="110dp"
-            android:layout_marginBottom="16dp"
-            android:max="600"
-            android:min="10" />
+                android:id="@+id/restTimePicker"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:layout_marginBottom="16dp"
+                android:max="600"
+                android:min="10" />
 
         <TextView
-            android:id="@+id/setsRemainingTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:textColor="@android:color/black"
-            android:layout_marginBottom="16dp"
-            android:text="Sets remaining: 0" />
-
-
+                android:id="@+id/setsRemainingTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="@android:color/black"
+                android:layout_marginBottom="16dp"
+                android:text="Sets remaining: 0" />
 
         <TextView
-            android:id="@+id/timerTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="24sp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="16dp"
-            android:text="00:00"/>
-
+                android:id="@+id/timerTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp"
+                android:text="00:00" />
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
             <Button
-                android:id="@+id/startButton"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginEnd="8dp"
-                android:text="Start" />
+                    android:id="@+id/startButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
+                    android:text="Start" />
 
             <Button
-                android:id="@+id/pauseButton"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginEnd="8dp"
-                android:text="Pause"
-                android:visibility="gone" />
+                    android:id="@+id/pauseButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
+                    android:text="Pause"
+                    android:visibility="gone" />
 
             <Button
-                android:id="@+id/stopButton"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Stop"
-                android:visibility="gone" />
+                    android:id="@+id/stopButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Stop"
+                    android:visibility="gone" />
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>

@@ -16,8 +16,7 @@ import com.example.bachelor_work.adapter.WeightAdapter
 import com.example.bachelor_work.model.DialogInfo
 import com.example.bachelor_work.model.WeightItem
 import com.example.bachelor_work.utils.DialogStorage
-import com.example.bachelor_work.utils.ToolbarHelper
-import com.example.bachelor_work.utils.ToolbarHelper.Companion.round
+import com.example.bachelor_work.utils.ToolBarHelper.Companion.round
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -61,8 +60,6 @@ class OneRepMaxCalculatorFragment : Fragment() {
         view.findViewById<Button>(R.id.toggleTableButton).setOnClickListener {
             toggleWeightTableDialog()
         }
-        super.onViewCreated(view, savedInstanceState)
-        ToolbarHelper.setupToolbar(this, view)
 
         // Set onClickListener for the close button in weight table dialog
         closeButton.setOnClickListener {
@@ -89,15 +86,17 @@ class OneRepMaxCalculatorFragment : Fragment() {
             toggleWeightTableDialog()
         }
 
-        val exportButton = weightTableDialog.findViewById<Button>(R.id.exportButton)
         exportButton?.setOnClickListener {
             val adapter = weightRecyclerView.adapter as WeightAdapter
             val fragmentName = "One Rep Max Calculator" // Change this to the name of your fragment
-            ToolbarHelper.exportDialogToPDF(requireContext(), weightTableDialog, adapter, "dialog_export.pdf", fragmentName)
+            val timestamp = System.currentTimeMillis().toString() // Use current timestamp as filename
+            val fileName = "OneRepMax_$timestamp.pdf" // Construct the filename
+            dialogStorage.exportDialogToPDF(requireContext(), adapter, fileName, fragmentName)
         }
 
         return view
     }
+
 
     private fun toggleWeightTableDialog() {
         if (weightTableDialog.isShowing) {

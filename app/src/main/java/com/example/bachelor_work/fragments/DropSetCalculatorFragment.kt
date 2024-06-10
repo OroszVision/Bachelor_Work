@@ -12,10 +12,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bachelor_work.R
 import com.example.bachelor_work.adapter.WeightAdapter
+import com.example.bachelor_work.model.DialogInfo
 import com.example.bachelor_work.model.WeightItem
-import com.example.bachelor_work.utils.ToolbarHelper
-import com.example.bachelor_work.utils.ToolbarHelper.Companion.round
+import com.example.bachelor_work.utils.DialogStorage
+import com.example.bachelor_work.utils.ToolBarHelper.Companion.round
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class DropSetCalculatorFragment : Fragment() {
 
@@ -27,6 +31,9 @@ class DropSetCalculatorFragment : Fragment() {
     private lateinit var weightRecyclerView: RecyclerView
     private lateinit var closeButton: Button
     private lateinit var backgroundOverlay: View
+    private lateinit var exportButton: Button
+
+    private lateinit var dialogStorage: DialogStorage
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,18 +47,18 @@ class DropSetCalculatorFragment : Fragment() {
         calculateButton = view.findViewById(R.id.calculate_button)
         backgroundOverlay = view.findViewById(R.id.backgroundOverlay)
 
+        dialogStorage = DialogStorage(requireContext())
+
         // Initialize the dialog and its components
         val dialogView = inflater.inflate(R.layout.dialog_weight_table, container, false)
         weightTableDialog = BottomSheetDialog(requireContext())
         weightTableDialog.setContentView(dialogView)
         weightRecyclerView = dialogView.findViewById(R.id.weightRecyclerView)!!
         closeButton = dialogView.findViewById(R.id.closeButton)
+        exportButton = dialogView.findViewById(R.id.exportButton)
 
         setupPercentageDecreasePicker()
         setupNumSetsPicker()
-
-        super.onViewCreated(view, savedInstanceState)
-        ToolbarHelper.setupToolbar(this, view)
 
         calculateButton.setOnClickListener {
             calculateDropSetWeights()
@@ -60,6 +67,14 @@ class DropSetCalculatorFragment : Fragment() {
 
         closeButton.setOnClickListener {
             toggleWeightTableDialog()
+        }
+
+        exportButton.setOnClickListener {
+            val adapter = weightRecyclerView.adapter as WeightAdapter
+            val fragmentName = "Drop Set Calculator" // Change this to the name of your fragment
+            val timestamp = System.currentTimeMillis().toString() // Use current timestamp as filename
+            val fileName = "DropSetCalculator_$timestamp.pdf" // Construct the filename
+            dialogStorage.exportDialogToPDF(requireContext(), adapter, fileName, fragmentName)
         }
 
         return view
@@ -98,10 +113,15 @@ class DropSetCalculatorFragment : Fragment() {
             val weightList = mutableListOf<WeightItem>()
             var currentWeight = startingWeight
             for (i in 1..numSets) {
-                weightList.add(WeightItem(-1,i,-1,currentWeight.round(2)))
+                weightList.add(WeightItem(-1, i, -1, currentWeight.round(2)))
                 currentWeight *= (1 - percentageDecrease / 100.0)
             }
             populateRecyclerView(weightList)
+
+            // Store dialog with calculation result and timestamp
+            val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
+            val timestampString = dateFormat.format(Date())
+            storeDialog(timestampString, weightList)
         }
     }
 
@@ -111,5 +131,9 @@ class DropSetCalculatorFragment : Fragment() {
         weightRecyclerView.adapter = adapter
     }
 
-
+    private fun storeDialog(timestamp: String, weightItems: List<WeightItem>) {
+        // Create DialogInfo object with necessary data and store it using dialogStorage
+        val dialogInfo = DialogInfo("Drop Set Calculator", timestamp, weightItems)
+        dialogStorage.storeDialog(dialogInfo)
+    }
 }

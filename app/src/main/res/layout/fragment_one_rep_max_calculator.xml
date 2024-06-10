@@ -1,129 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-        <!-- Toolbar -->
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            android:elevation="4dp"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            android:layout_alignParentTop="true" />
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <!-- Main content layout -->
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_below="@id/toolbar"
-            android:padding="16dp">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
 
                 <!-- Weight input section -->
                 <LinearLayout
-                    android:id="@+id/weightInputLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="16dp">
+                        android:id="@+id/weightInputLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="16dp">
 
                         <EditText
-                            android:id="@+id/weightEditText"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="3"
-                            android:layout_marginStart="8dp"
-                            android:hint="Enter weight:"
-                            android:inputType="numberDecimal"
-                            android:minHeight="48dp" />
+                                android:id="@+id/weightEditText"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="3"
+                                android:layout_marginStart="8dp"
+                                android:hint="Enter weight:"
+                                android:inputType="numberDecimal"
+                                android:minHeight="48dp" />
 
                         <Button
-                            android:id="@+id/kgButton"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="Kg" />
+                                android:id="@+id/kgButton"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Kg" />
 
                         <Button
-                            android:id="@+id/lbButton"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="Lb" />
+                                android:id="@+id/lbButton"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Lb" />
 
                 </LinearLayout>
 
                 <!-- Choose Reps TextView -->
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="Choose Reps:"
-                    android:textStyle="bold"
-                    android:textSize="18dp" />
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="Choose Reps:"
+                        android:textStyle="bold"
+                        android:textSize="18dp" />
 
                 <!-- NumberPicker for choosing repetitions -->
                 <NumberPicker
-                    android:id="@+id/repetitionsNumberPicker"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp" />
+                        android:id="@+id/repetitionsNumberPicker"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp" />
 
                 <!-- Buttons for calculating 1RM -->
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="8dp">
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp">
 
                         <Button
-                            android:id="@+id/epleyButton"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="Calculate 1RM (Epley)"
-                            android:layout_marginEnd="4dp"/>
+                                android:id="@+id/epleyButton"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Calculate 1RM (Epley)"
+                                android:layout_marginEnd="4dp"/>
 
                         <Button
-                            android:id="@+id/brzyckiButton"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="Calculate 1RM (Brzycki)"
-                            android:layout_marginEnd="4dp"/>
+                                android:id="@+id/brzyckiButton"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Calculate 1RM (Brzycki)"
+                                android:layout_marginEnd="4dp"/>
 
                         <Button
-                            android:id="@+id/lombardiButton"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="Calculate 1RM (Lombardi)"
-                            android:layout_marginEnd="4dp"/>
+                                android:id="@+id/lombardiButton"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Calculate 1RM (Lombardi)"
+                                android:layout_marginEnd="4dp"/>
 
                 </LinearLayout>
 
                 <!-- Button to toggle the weight table -->
                 <Button
-                    android:id="@+id/toggleTableButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Show Weight Table"
-                    android:layout_marginTop="16dp"
-                    android:layout_gravity="bottom" />
+                        android:id="@+id/toggleTableButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Show Weight Table"
+                        android:layout_marginTop="16dp"
+                        android:layout_gravity="bottom" />
 
         </LinearLayout>
 
         <!-- Transparent background overlay -->
         <View
-            android:id="@+id/backgroundOverlay"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#80000000"
-            android:visibility="gone"
-            android:layout_below="@id/toolbar" />
+                android:id="@+id/backgroundOverlay"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#80000000"
+                android:visibility="gone" />
 
 </RelativeLayout>
