@@ -48,9 +48,12 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    implementation ("androidx.navigation:navigation-fragment-ktx:2.4.0")
-    implementation ("androidx.navigation:navigation-ui-ktx:2.4.0")
-    implementation ("com.itextpdf:itext7-core:7.1.15")
-    implementation ("com.google.code.gson:gson:2.8.8")
+    implementation ("androidx.navigation:navigation-fragment-ktx:2.7.7")
+    implementation ("androidx.navigation:navigation-ui-ktx:2.7.7")
+    implementation ("com.google.code.gson:gson:2.10.1")
+    implementation ("com.itextpdf:itext7-core:7.2.3")
+
+
+
 
 }

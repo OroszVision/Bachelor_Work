@@ -2,9 +2,18 @@ package com.example.bachelor_work.utils
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.os.Environment
+import android.util.Log
 import com.example.bachelor_work.model.*
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.itextpdf.kernel.pdf.PdfDocument
+import com.itextpdf.kernel.pdf.PdfWriter
+import com.itextpdf.layout.Document
+import com.itextpdf.layout.element.Paragraph
+import com.itextpdf.layout.properties.TextAlignment
+import java.io.File
+import java.io.FileOutputStream
 
 class ProfileDataHandler(context: Context) {
 
@@ -70,4 +79,81 @@ class ProfileDataHandler(context: Context) {
             personalNotes.toMutableList()
         )
     }
+
+    fun exportProfileToPDF(profileData: ProfileData, fileName: String) {
+        val downloadDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS)
+        val file = File(downloadDir, fileName)
+        val outputStream = FileOutputStream(file)
+        val writer = PdfWriter(outputStream)
+        val pdf = PdfDocument(writer)
+        val document = Document(pdf)
+
+        try {
+            // Add document title
+            val title = Paragraph("Profile Data")
+                .setTextAlignment(TextAlignment.CENTER)
+                .setFontSize(20f)
+                .setBold()
+                .setMarginBottom(20f)
+            document.add(title)
+
+            // Add profile data details
+            document.add(Paragraph("Body Weight: ${profileData.bodyWeight}"))
+            document.add(Paragraph("Body Fat Percentage: ${profileData.bodyFatPercentage}"))
+            document.add(Paragraph("Height: ${profileData.height}"))
+            document.add(Paragraph("Age: ${profileData.age}"))
+            document.add(Paragraph("Blood Pressure: ${profileData.bloodPressure}"))
+            document.add(Paragraph("Heart Rate: ${profileData.heartRate}"))
+            document.add(Paragraph("")) // Add empty line for spacing
+
+            // Add strength metrics
+            document.add(Paragraph("Strength Metrics:"))
+            profileData.strengthMetrics.forEach {
+                document.add(Paragraph("${it.exerciseName}: ${it.maxLift}"))
+            }
+            document.add(Paragraph("")) // Add empty line for spacing
+
+            // Add health metrics
+            document.add(Paragraph("Health Metrics:"))
+            profileData.healthMetrics.forEach {
+                document.add(Paragraph("${it.metricName}: ${it.value}"))
+            }
+            document.add(Paragraph("")) // Add empty line for spacing
+
+            // Add injury metrics
+            document.add(Paragraph("Injury Metrics:"))
+            profileData.injuryMetrics.forEach {
+                document.add(Paragraph("${it.details}"))
+            }
+            document.add(Paragraph("")) // Add empty line for spacing
+
+            // Add allergies metrics
+            document.add(Paragraph("Allergies Metrics:"))
+            profileData.allergiesMetrics.forEach {
+                document.add(Paragraph("${it.type}"))
+            }
+            document.add(Paragraph("")) // Add empty line for spacing
+
+            // Add personal notes
+            document.add(Paragraph("Personal Notes:"))
+            profileData.personalNotes.forEach {
+                document.add(Paragraph("${it.title}: ${it.content}"))
+            }
+
+            // Close the document
+            document.close()
+
+            Log.d(TAG, "PDF exported successfully to: ${file.absolutePath}")
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Log.e(TAG, "Error exporting PDF: ${e.message}")
+        } finally {
+            outputStream.close()
+        }
+    }
+
+    companion object {
+        private const val TAG = "ProfileDataHandler"
+    }
 }
+

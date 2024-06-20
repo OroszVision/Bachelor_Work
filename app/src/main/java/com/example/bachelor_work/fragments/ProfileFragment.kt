@@ -24,6 +24,7 @@ import com.example.bachelor_work.model.PersonalNote
 import com.example.bachelor_work.model.ProfileData
 import com.example.bachelor_work.model.StrengthMetric
 import com.example.bachelor_work.utils.ProfileDataHandler
+import com.google.android.material.button.MaterialButton
 
 class ProfileFragment : Fragment(),
     StrengthMetricsAdapter.EditableStrengthMetricProvider,
@@ -53,6 +54,7 @@ class ProfileFragment : Fragment(),
     private lateinit var bloodPressureEditText: EditText
     private lateinit var heartRateEditText: EditText
     private lateinit var saveButton: Button
+    private lateinit var exportButton: Button
 
     private lateinit var profileDataHandler: ProfileDataHandler
 
@@ -76,6 +78,7 @@ class ProfileFragment : Fragment(),
         bloodPressureEditText = view.findViewById(R.id.bloodPressureEditText)
         heartRateEditText = view.findViewById(R.id.heartRateEditText)
         saveButton = view.findViewById(R.id.saveButton)
+        exportButton = view.findViewById(R.id.exportButton)
 
         // Set saved data to EditText fields
         bodyWeightEditText.setText(savedData.bodyWeight)
@@ -181,6 +184,12 @@ class ProfileFragment : Fragment(),
         // Set click listener for save button to save all data
         saveButton.setOnClickListener {
             saveAllData()
+        }
+
+        // Set click listener for export button
+        val exportButton = view.findViewById<MaterialButton>(R.id.exportButton)
+        exportButton.setOnClickListener {
+            exportProfileToPDF()
         }
 
         return view
@@ -586,5 +595,19 @@ class ProfileFragment : Fragment(),
 
         profileDataHandler.saveProfileData(profileData)
         Toast.makeText(requireContext(), "Data saved successfully", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun exportProfileToPDF() {
+        // Load profile data from SharedPreferences or wherever it is stored
+        val profileData = profileDataHandler.loadProfileData()
+
+        // Generate PDF file name
+        val fileName = "profile_data.pdf"
+
+        // Export profile data to PDF
+        profileDataHandler.exportProfileToPDF(profileData, fileName)
+
+        // Optionally, show a message indicating successful export
+        // Toast.makeText(requireContext(), "PDF Exported successfully", Toast.LENGTH_SHORT).show()
     }
 }

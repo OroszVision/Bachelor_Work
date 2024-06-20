@@ -7,7 +7,7 @@ import com.example.bachelor_work.adapter.WeightAdapter
 import com.example.bachelor_work.model.DialogInfo
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.gson.Gson
-import com.itextpdf.io.font.FontConstants
+import com.itextpdf.io.font.constants.StandardFonts
 import com.itextpdf.kernel.font.PdfFontFactory
 import com.itextpdf.kernel.pdf.PdfDocument
 import com.itextpdf.kernel.pdf.PdfWriter
@@ -15,9 +15,10 @@ import com.itextpdf.layout.Document
 import com.itextpdf.layout.element.Cell
 import com.itextpdf.layout.element.Paragraph
 import com.itextpdf.layout.element.Table
-import com.itextpdf.layout.property.TextAlignment
-import com.itextpdf.layout.property.UnitValue
-import com.itextpdf.layout.property.VerticalAlignment
+import com.itextpdf.layout.properties.TextAlignment
+import com.itextpdf.layout.properties.UnitValue
+import com.itextpdf.layout.properties.VerticalAlignment
+
 import java.io.File
 import java.io.FileOutputStream
 
@@ -42,7 +43,7 @@ class DialogStorage(private val context: Context) {
 
                 // Remove excess dialogs beyond the 5th position
                 val excessDialogs = dialogList.subList(10, dialogList.size)
-                excessDialogs.forEach { dialogToRemove ->
+                excessDialogs.forEach {
                     // Implement logic to delete dialog from file or perform any cleanup needed
                     // For example, you can perform any necessary cleanup related to the dialog here
                 }
@@ -125,7 +126,7 @@ class DialogStorage(private val context: Context) {
         cell.setVerticalAlignment(VerticalAlignment.MIDDLE)
         cell.setTextAlignment(TextAlignment.CENTER)
         if (isHeader) {
-            cell.setFont(PdfFontFactory.createFont(FontConstants.HELVETICA_BOLD))
+            cell.setFont(PdfFontFactory.createFont(StandardFonts.HELVETICA_BOLD))
         }
         return cell
     }
