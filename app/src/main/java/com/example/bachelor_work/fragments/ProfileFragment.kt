@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bachelor_work.R
@@ -23,8 +24,13 @@ import com.example.bachelor_work.model.InjuryMetric
 import com.example.bachelor_work.model.PersonalNote
 import com.example.bachelor_work.model.ProfileData
 import com.example.bachelor_work.model.StrengthMetric
+import com.example.bachelor_work.model.StrengthMetricHistoryEntry
 import com.example.bachelor_work.utils.ProfileDataHandler
+import com.example.bachelor_work.view.ProfileViewModel
 import com.google.android.material.button.MaterialButton
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class ProfileFragment : Fragment(),
     StrengthMetricsAdapter.EditableStrengthMetricProvider,
@@ -57,6 +63,7 @@ class ProfileFragment : Fragment(),
     private lateinit var exportButton: Button
 
     private lateinit var profileDataHandler: ProfileDataHandler
+    private lateinit var profileViewModel: ProfileViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -120,6 +127,8 @@ class ProfileFragment : Fragment(),
         personalNotesRecyclerView.layoutManager = LinearLayoutManager(context)
         personalNotesAdapter = PersonalNotesAdapter(savedData.personalNotes.toMutableList())
         personalNotesRecyclerView.adapter = personalNotesAdapter
+
+        profileViewModel = ViewModelProvider(requireActivity())[ProfileViewModel::class.java]
 
         // Set click listener for "Add Allergies Metric" button
         view.findViewById<Button>(R.id.addAllergyButton).setOnClickListener {
@@ -192,15 +201,20 @@ class ProfileFragment : Fragment(),
             exportProfileToPDF()
         }
 
+        val strengthMetrics = strengthMetricsAdapter.getStrengthMetrics()
+        profileViewModel.setStrengthMetrics(strengthMetrics)
+
+
         return view
     }
 
-    // Show dialog to add a new strength metric
     private fun showAddStrengthMetricDialog() {
         val dialog = Dialog(requireContext())
         dialog.setContentView(R.layout.dialog_add_strength_metric)
         val saveButton = dialog.findViewById<Button>(R.id.saveButton)
         val cancelButton = dialog.findViewById<Button>(R.id.cancelButton)
+        val exerciseNameEditText = dialog.findViewById<EditText>(R.id.exerciseNameEditText)
+        val maxLiftEditText = dialog.findViewById<EditText>(R.id.maxLiftEditText)
 
         // Set dialog window dimensions
         val window = dialog.window
@@ -208,8 +222,6 @@ class ProfileFragment : Fragment(),
 
         saveButton.setOnClickListener {
             // Retrieve entered data from EditText fields
-            val exerciseNameEditText = dialog.findViewById<EditText>(R.id.exerciseNameEditText)
-            val maxLiftEditText = dialog.findViewById<EditText>(R.id.maxLiftEditText)
             val name = exerciseNameEditText.text.toString()
             val value = maxLiftEditText.text.toString().toDoubleOrNull()
 
@@ -217,6 +229,11 @@ class ProfileFragment : Fragment(),
             if (name.isNotEmpty() && value != null) {
                 val newStrengthMetric = StrengthMetric(name, value)
                 strengthMetricsAdapter.addStrengthMetric(newStrengthMetric)
+
+                // Add history entry
+                val historyEntry = StrengthMetricHistoryEntry(getCurrentDateString(), value)
+                strengthMetricsAdapter.addHistoryEntry(newStrengthMetric, historyEntry)
+
                 dialog.dismiss()
             } else {
                 // Show error message if data is invalid
@@ -230,6 +247,11 @@ class ProfileFragment : Fragment(),
         }
 
         dialog.show()
+    }
+
+    private fun getCurrentDateString(): String {
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        return dateFormat.format(Date())
     }
 
     // Show dialog to add a new injury metric

@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bachelor_work.R
 import com.example.bachelor_work.model.StrengthMetric
+import com.example.bachelor_work.model.StrengthMetricHistoryEntry
 
 class StrengthMetricsAdapter(private val strengthMetrics: MutableList<StrengthMetric>) :
     RecyclerView.Adapter<StrengthMetricsAdapter.StrengthMetricViewHolder>() {
@@ -75,6 +76,11 @@ class StrengthMetricsAdapter(private val strengthMetrics: MutableList<StrengthMe
     fun addStrengthMetric(strengthMetric: StrengthMetric) {
         strengthMetrics.add(strengthMetric)
         notifyItemInserted(strengthMetrics.size - 1) // Notify adapter about the new item
+    }
+
+    fun addHistoryEntry(strengthMetric: StrengthMetric, historyEntry: StrengthMetricHistoryEntry) {
+        strengthMetric.history.add(historyEntry)
+        notifyDataSetChanged()
     }
 
     // Function to update an existing strength metric

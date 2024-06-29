@@ -123,14 +123,14 @@ class ProfileDataHandler(context: Context) {
             // Add injury metrics
             document.add(Paragraph("Injury Metrics:"))
             profileData.injuryMetrics.forEach {
-                document.add(Paragraph("${it.details}"))
+                document.add(Paragraph(it.details))
             }
             document.add(Paragraph("")) // Add empty line for spacing
 
             // Add allergies metrics
             document.add(Paragraph("Allergies Metrics:"))
             profileData.allergiesMetrics.forEach {
-                document.add(Paragraph("${it.type}"))
+                document.add(Paragraph(it.type))
             }
             document.add(Paragraph("")) // Add empty line for spacing
 
@@ -151,9 +151,31 @@ class ProfileDataHandler(context: Context) {
             outputStream.close()
         }
     }
+    // In ProfileDataHandler
+    fun getStrengthMetricsWithHistory(): List<StrengthMetric> {
+        val profileData = loadProfileData()
+        return profileData.strengthMetrics
+    }
+
+    fun getStatisticsData(): Map<String, List<Pair<String, Float>>> {
+        val profileData = loadProfileData()
+        val statisticsData = mutableMapOf<String, List<Pair<String, Float>>>()
+
+        // Prepare data for each metric type
+        val strengthMetrics = profileData.strengthMetrics.map { it.exerciseName to it.maxLift.toFloat() }
+        val healthMetrics = profileData.healthMetrics.map { it.metricName to it.value.toFloat() }
+        val injuryMetrics = profileData.injuryMetrics.map { it.details to 1.0f }
+        val allergiesMetrics = profileData.allergiesMetrics.map { it.type to 1.0f }
+
+        statisticsData["Strength Metrics"] = strengthMetrics
+        statisticsData["Health Metrics"] = healthMetrics
+        statisticsData["Injury Metrics"] = injuryMetrics
+        statisticsData["Allergies Metrics"] = allergiesMetrics
+
+        return statisticsData
+    }
 
     companion object {
         private const val TAG = "ProfileDataHandler"
     }
 }
-

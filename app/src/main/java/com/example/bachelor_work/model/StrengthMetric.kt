@@ -2,5 +2,6 @@ package com.example.bachelor_work.model
 
 data class StrengthMetric(
     val exerciseName: String,
-    val maxLift: Double
+    val maxLift: Double,
+    val history: MutableList<StrengthMetricHistoryEntry> = mutableListOf(),
 )
