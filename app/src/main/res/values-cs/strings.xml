@@ -1,0 +1,90 @@
+<resources>
+    <string name="app_name">Bachelor_Work</string>
+    <string name="statistics">Statistiky</string>
+    <string name="profile">Profil</string>
+    <string name="history">Historie</string>
+    <string name="home">Domů</string>
+    <string name="hello_blank_fragment">Ahoj prázdný fragment</string>
+    <string name="result_text">Váš výsledek: %s</string>
+    <string name="invalid_weight">Neplatná hmotnost</string>
+    <string name="one_rep_max_description">Jednorepové maximum (1RM) je klíčový metr v posilování, představující maximální množství váhy, které může jednotlivec zvednout jedním opakováním se správnou technikou. Je zásadní pro návrh účinných tréninkových programů na sílu.\n\nMetody výpočtu:\n\nEpleyho formule: Odhaduje 1RM pomocí zvednuté váhy a provedených opakování.\n\nBrzyckiho formule: Vypočítá 1RM na základě zvednuté váhy a provedených opakování.\n\nLombardiho formule: Poskytuje alternativní přístup k odhadu 1RM pomocí zvednuté váhy a provedených opakování.</string>
+    <string name="add_health_metric">Přidat zdravotní metriku</string>
+    <string name="health_metric_name">Název zdravotní metriky</string>
+    <string name="value">Hodnota</string>
+    <string name="save">Uložit</string>
+    <string name="cancel">Zrušit</string>
+    <string name="enter_your_record">Zadejte svůj záznam</string>
+    <string name="title">Název</string>
+    <string name="content">Obsah</string>
+    <string name="add_strength_metric">Přidat metriku síly</string>
+    <string name="exercise_name">Název cviku</string>
+    <string name="max_lift">Maximální zvednutí</string>
+    <string name="percentage">Procento</string>
+    <string name="sets">Série</string>
+    <string name="reps">Opakování</string>
+    <string name="weight">Váha</string>
+    <string name="close">Zavřít</string>
+    <string name="export">Exportovat</string>
+    <string name="enter_starting_weight">Zadejte počáteční váhu:</string>
+    <string name="starting_reps">Počet počátečních opakování:</string>
+    <string name="number_of_sets">Počet sérií:</string>
+    <string name="weight_increase_percentage">Procento zvýšení váhy:</string>
+    <string name="calculate_pyramid">Vypočítat pyramidu</string>
+    <string name="show_weight_table">Zobrazit tabulku vah</string>
+    <string name="percentage_decrease">Procento snížení:</string>
+    <string name="calculate_drop_set">Vypočítat drop set</string>
+    <string name="enter_weight">Zadejte váhu:</string>
+    <string name="choose_reps">Vyberte počet opakování:</string>
+    <string name="calculate_1rm_epley">Vypočítat 1RM (Epley)</string>
+    <string name="calculate_1rm_brzycki">Vypočítat 1RM (Brzycki)</string>
+    <string name="calculate_1rm_lombardi">Vypočítat 1RM (Lombardi)</string>
+    <string name="body_weight">Tělesná váha</string>
+    <string name="enter_body_weight">Zadejte tělesnou váhu</string>
+    <string name="body_fat_percentage">Procento tělesného tuku</string>
+    <string name="enter_body_fat_percentage">Zadejte procento tělesného tuku</string>
+    <string name="height">Výška</string>
+    <string name="enter_your_height">Zadejte svou výšku</string>
+    <string name="age">Věk</string>
+    <string name="enter_your_age">Zadejte svůj věk</string>
+    <string name="blood_pressure">Krevní tlak</string>
+    <string name="enter_your_bp">Zadejte svůj krevní tlak</string>
+    <string name="heart_rate">Srdeční tep</string>
+    <string name="enter_your_hr">Zadejte svůj srdeční tep</string>
+    <string name="circumferences">Obvody</string>
+    <string name="waist">Pas</string>
+    <string name="enter_circumference">Zadejte obvod</string>
+    <string name="hip">Boky</string>
+    <string name="chest">Hrudník</string>
+    <string name="arm">Paže</string>
+    <string name="strength_metrics">Metry síly</string>
+    <string name="health_metrics">Zdravotní metriky</string>
+    <string name="add_section">Přidat sekci</string>
+    <string name="injury_history">Historie zranění</string>
+    <string name="allergies">Alergie</string>
+    <string name="personal_notes">Osobní poznámky</string>
+    <string name="weight_decrease_percentage">Procento snížení váhy:</string>
+    <string name="calculate_reverse_pyramid">Vypočítat reverzní pyramidu</string>
+    <string name="workout_time_seconds">Čas cvičení (v sekundách):</string>
+    <string name="rest_time_seconds">Doba odpočinku (v sekundách):</string>
+    <string name="sets_remaining_0">Zbývá sérií: 0</string>
+    <string name="start">Začít</string>
+    <string name="pause">Pauza</string>
+    <string name="stop">Zastavit</string>
+    <string name="reset">Resetovat</string>
+    <string name="_100">100%</string>
+    <string name="_1">1</string>
+    <string name="_10">10</string>
+    <string name="_0_kg">0 kg</string>
+    <string name="select_language">Vyber si jazyk</string>
+    <string name="apply">Potvrdit</string>
+    <string-array name="language_options">
+    <item>English</item>
+    <item>Čeština</item>
+    </string-array>
+    <string-array name="language_codes">
+    <item>en</item>
+    <item>cs</item>
+    </string-array>
+
+
+        </resources>

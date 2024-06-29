@@ -44,13 +44,13 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Body Weight"
+                            android:text="@string/body_weight"
                             android:textStyle="bold"/>
                         <EditText
                             android:id="@+id/bodyWeightEditText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Enter Body Weight"
+                            android:hint="@string/enter_body_weight"
                             android:inputType="numberDecimal"
                             android:maxLines="1"
                             android:maxLength="6"/>
@@ -67,13 +67,13 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Body Fat Percentage"
+                            android:text="@string/body_fat_percentage"
                             android:textStyle="bold"/>
                         <EditText
                             android:id="@+id/bodyFatPercentageEditText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Enter Body Fat Percentage"
+                            android:hint="@string/enter_body_fat_percentage"
                             android:inputType="numberDecimal"
                             android:maxLines="1"
                             android:maxLength="6"/>
@@ -97,13 +97,13 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Height"
+                            android:text="@string/height"
                             android:textStyle="bold"/>
                         <EditText
                             android:id="@+id/heightEditText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Enter Your Height"
+                            android:hint="@string/enter_your_height"
                             android:inputType="numberDecimal"
                             android:maxLines="1"
                             android:maxLength="6"/>
@@ -120,13 +120,13 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Age"
+                            android:text="@string/age"
                             android:textStyle="bold"/>
                         <EditText
                             android:id="@+id/ageEditText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Enter Your Age"
+                            android:hint="@string/enter_your_age"
                             android:inputType="numberDecimal"
                             android:maxLines="1"
                             android:maxLength="6"/>
@@ -150,13 +150,13 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Blood Pressure"
+                            android:text="@string/blood_pressure"
                             android:textStyle="bold"/>
                         <EditText
                             android:id="@+id/bloodPressureEditText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Enter Your BP"
+                            android:hint="@string/enter_your_bp"
                             android:inputType="numberDecimal"
                             android:maxLines="1"
                             android:maxLength="6"/>
@@ -173,13 +173,13 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Heart Rate"
+                            android:text="@string/heart_rate"
                             android:textStyle="bold"/>
                         <EditText
                             android:id="@+id/heartRateEditText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Enter Your HR"
+                            android:hint="@string/enter_your_hr"
                             android:inputType="numberDecimal"
                             android:maxLines="1"
                             android:maxLength="6"/>
@@ -191,7 +191,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Circumferences"
+                    android:text="@string/circumferences"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:layout_marginTop="16dp"
@@ -213,13 +213,13 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Waist"
+                            android:text="@string/waist"
                             android:textStyle="bold"/>
                         <EditText
                             android:id="@+id/waistCircumferenceEditText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Enter Circumference"
+                            android:hint="@string/enter_circumference"
                             android:inputType="numberDecimal"
                             android:maxLines="1"
                             android:maxLength="6"/>
@@ -236,13 +236,13 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Hip"
+                            android:text="@string/hip"
                             android:textStyle="bold"/>
                         <EditText
                             android:id="@+id/hipCircumferenceEditText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Enter Circumference"
+                            android:hint="@string/enter_circumference"
                             android:inputType="numberDecimal"
                             android:maxLines="1"
                             android:maxLength="6"/>
@@ -266,13 +266,13 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Chest"
+                            android:text="@string/chest"
                             android:textStyle="bold"/>
                         <EditText
                             android:id="@+id/chestCircumferenceEditText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Enter Circumference"
+                            android:hint="@string/enter_circumference"
                             android:inputType="numberDecimal"
                             android:maxLines="1"
                             android:maxLength="6"/>
@@ -289,13 +289,13 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Arm"
+                            android:text="@string/arm"
                             android:textStyle="bold"/>
                         <EditText
                             android:id="@+id/armCircumferenceEditText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Enter Circumference"
+                            android:hint="@string/enter_circumference"
                             android:inputType="numberDecimal"
                             android:maxLines="1"
                             android:maxLength="6"/>
@@ -319,7 +319,7 @@
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Strength Metrics"
+                        android:text="@string/strength_metrics"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         android:layout_marginBottom="8dp"/>
@@ -337,7 +337,7 @@
                         android:id="@+id/addStrengthMetricButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Add Strength Metric"
+                        android:text="@string/add_strength_metric"
                         android:layout_gravity="center"
                         android:layout_marginTop="16dp"/>
 
@@ -359,7 +359,7 @@
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Health Metrics"
+                        android:text="@string/health_metrics"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         android:layout_marginBottom="8dp"/>
@@ -375,8 +375,7 @@
                         android:id="@+id/addHealthMetricButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Add Section"
-                        android:layout_centerHorizontal="true"
+                        android:text="@string/add_section"
                         android:layout_marginTop="16dp"
                         android:layout_gravity="center"/>
 
@@ -398,7 +397,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Injury History"
+                    android:text="@string/injury_history"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:layout_marginBottom="8dp"/>
@@ -413,8 +412,7 @@
                     android:id="@+id/addInjuryButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Add Section"
-                    android:layout_centerHorizontal="true"
+                    android:text="@string/add_section"
                     android:layout_marginTop="16dp"
                     android:layout_gravity="center"/>
             </LinearLayout>
@@ -435,7 +433,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Allergies"
+                    android:text="@string/allergies"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:layout_marginBottom="8dp"/>
@@ -449,8 +447,7 @@
                     android:id="@+id/addAllergyButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Add Section"
-                    android:layout_centerHorizontal="true"
+                    android:text="@string/add_section"
                     android:layout_marginTop="16dp"
                     android:layout_gravity="center"/>
             </LinearLayout>
@@ -471,7 +468,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Personal Notes"
+                    android:text="@string/personal_notes"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:layout_marginBottom="8dp"/>
@@ -485,8 +482,7 @@
                     android:id="@+id/addPersonalNoteButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Add Section"
-                    android:layout_centerHorizontal="true"
+                    android:text="@string/add_section"
                     android:layout_marginTop="16dp"
                     android:layout_gravity="center"/>
 
@@ -504,16 +500,16 @@
                     android:id="@+id/saveButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Save"
+                    android:text="@string/save"
                     android:layout_gravity="center"
                     android:layout_marginTop="16dp"
-                    android:layout_marginRight="100dp"/>
+                    android:layout_marginEnd="100dp"/>
 
             <Button
                     android:id="@+id/exportButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Export"
+                    android:text="@string/export"
                     android:layout_gravity="center"
                     android:layout_marginTop="16dp"/>
 

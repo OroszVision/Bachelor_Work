@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
                 android:layout_marginStart="8dp"
-                android:hint="Enter starting weight:"
+                android:hint="@string/enter_starting_weight"
                 android:inputType="numberDecimal"
                 android:minHeight="48dp" />
 
@@ -38,9 +38,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Percentage Decrease:"
+            android:text="@string/percentage_decrease"
             android:textStyle="bold"
-            android:textSize="18dp" />
+            android:textSize="18sp" />
 
         <!-- NumberPicker for choosing percentage decrease -->
         <NumberPicker
@@ -54,9 +54,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Number of Sets:"
+            android:text="@string/number_of_sets"
             android:textStyle="bold"
-            android:textSize="18dp" />
+            android:textSize="18sp" />
 
         <!-- NumberPicker for choosing number of sets -->
         <NumberPicker
@@ -70,7 +70,7 @@
             android:id="@+id/calculate_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Calculate Drop Set"
+            android:text="@string/calculate_drop_set"
             android:layout_marginTop="16dp" />
 
         <!-- Result TextView -->
@@ -86,7 +86,7 @@
             android:id="@+id/toggleTableButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Show Weight Table"
+            android:text="@string/show_weight_table"
             android:layout_marginTop="16dp"
             android:layout_gravity="bottom" />
 

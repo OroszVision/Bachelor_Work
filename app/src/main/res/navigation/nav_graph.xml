@@ -110,6 +110,15 @@
             app:destination="@id/homeFragment" />
     </fragment>
 
+    <fragment
+            android:id="@+id/settingsFragment"
+            android:name="com.example.bachelor_work.fragments.SettingsFragment"
+            android:label="Settings"
+            tools:layout="@layout/fragment_settings">
+
+
+    </fragment>
+
     <!-- Define actions between fragments -->
 
     <!-- Add more fragments and actions as needed -->

@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
                 android:layout_marginStart="8dp"
-                android:hint="Enter starting weight:"
+                android:hint="@string/enter_starting_weight"
                 android:inputType="numberDecimal"
                 android:minHeight="48dp"
                 android:paddingTop="40dp"
@@ -58,9 +58,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Starting Reps:"
+                android:text="@string/starting_reps"
                 android:textStyle="bold"
-                android:textSize="18dp"
+                android:textSize="18sp"
                 android:gravity="center"/>
 
             <!-- TextView for "Number of Sets" -->
@@ -68,9 +68,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Number of Sets:"
+                android:text="@string/number_of_sets"
                 android:textStyle="bold"
-                android:textSize="18dp"
+                android:textSize="18sp"
                 android:layout_gravity="center"/>
 
         </LinearLayout>
@@ -107,9 +107,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Weight Increase Percentage:"
+            android:text="@string/weight_increase_percentage"
             android:textStyle="bold"
-            android:textSize="18dp" />
+            android:textSize="18sp" />
 
         <!-- NumberPicker for choosing percentage increase -->
         <NumberPicker
@@ -123,7 +123,7 @@
             android:id="@+id/calculate_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Calculate Pyramid"
+            android:text="@string/calculate_pyramid"
             android:layout_marginTop="16dp" />
 
         <!-- Button to toggle the weight table -->
@@ -131,7 +131,7 @@
             android:id="@+id/toggleTableButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Show Weight Table"
+            android:text="@string/show_weight_table"
             android:layout_marginTop="16dp"
             android:layout_gravity="bottom" />
 

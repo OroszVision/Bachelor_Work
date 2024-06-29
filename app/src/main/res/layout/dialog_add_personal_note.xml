@@ -9,7 +9,7 @@
             android:id="@+id/titleEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Title"
+            android:hint="@string/title"
             android:inputType="text"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -19,7 +19,7 @@
             android:id="@+id/contentEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Content"
+            android:hint="@string/content"
             android:inputType="textMultiLine"
             app:layout_constraintTop_toBottomOf="@id/titleEditText"
             app:layout_constraintStart_toStartOf="parent"
@@ -29,7 +29,7 @@
             android:id="@+id/saveButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Save"
+            android:text="@string/save"
             app:layout_constraintTop_toBottomOf="@id/contentEditText"
             app:layout_constraintEnd_toStartOf="@id/cancelButton"/>
 
@@ -37,7 +37,7 @@
             android:id="@+id/cancelButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cancel"
+            android:text="@string/cancel"
             app:layout_constraintTop_toTopOf="@id/saveButton"
             app:layout_constraintEnd_toEndOf="parent"/>
 

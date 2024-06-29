@@ -25,23 +25,9 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="3"
                                 android:layout_marginStart="8dp"
-                                android:hint="Enter weight:"
+                                android:hint="@string/enter_weight"
                                 android:inputType="numberDecimal"
                                 android:minHeight="48dp" />
-
-                        <Button
-                                android:id="@+id/kgButton"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="Kg" />
-
-                        <Button
-                                android:id="@+id/lbButton"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="Lb" />
 
                 </LinearLayout>
 
@@ -50,9 +36,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
-                        android:text="Choose Reps:"
+                        android:text="@string/choose_reps"
                         android:textStyle="bold"
-                        android:textSize="18dp" />
+                        android:textSize="18sp" />
 
                 <!-- NumberPicker for choosing repetitions -->
                 <NumberPicker
@@ -73,7 +59,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="Calculate 1RM (Epley)"
+                                android:text="@string/calculate_1rm_epley"
                                 android:layout_marginEnd="4dp"/>
 
                         <Button
@@ -81,7 +67,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="Calculate 1RM (Brzycki)"
+                                android:text="@string/calculate_1rm_brzycki"
                                 android:layout_marginEnd="4dp"/>
 
                         <Button
@@ -89,7 +75,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="Calculate 1RM (Lombardi)"
+                                android:text="@string/calculate_1rm_lombardi"
                                 android:layout_marginEnd="4dp"/>
 
                 </LinearLayout>
@@ -99,7 +85,7 @@
                         android:id="@+id/toggleTableButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Show Weight Table"
+                        android:text="@string/show_weight_table"
                         android:layout_marginTop="16dp"
                         android:layout_gravity="bottom" />
 

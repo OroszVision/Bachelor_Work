@@ -20,7 +20,7 @@
             android:id="@+id/metricNameEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter your record"
+            android:hint="@string/enter_your_record"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:padding="8dp"
             android:background="?android:attr/selectableItemBackground"/>
@@ -37,14 +37,14 @@
                 android:id="@+id/saveButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Save"
+                android:text="@string/save"
                 android:textColor="@android:color/white" />
 
             <Button
                 android:id="@+id/cancelButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Cancel"
+                android:text="@string/cancel"
                 android:textColor="@android:color/white" />
 
         </LinearLayout>
