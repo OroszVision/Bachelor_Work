@@ -12,7 +12,6 @@ import com.example.bachelor_work.R
 import com.example.bachelor_work.adapter.CalculatorAdapter
 import com.example.bachelor_work.model.Calculator
 
-
 class HomeFragment : Fragment() {
 
     private lateinit var calculators: List<Calculator>
@@ -27,37 +26,38 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Retrieve calculator names and descriptions from resources
         val calculatorNames = resources.getStringArray(R.array.calculator_names)
         val calculatorDescriptions = resources.getStringArray(R.array.calculator_descriptions)
 
+        // Combine names and descriptions into a list of Calculator objects
         calculators = calculatorNames.zip(calculatorDescriptions) { name, description ->
             Calculator(name, description)
         }
 
+        // Set up RecyclerView
         val recyclerView: RecyclerView = view.findViewById(R.id.recycler_view)
-
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.adapter = CalculatorAdapter(calculators) { calculator ->
             // Handle item click by navigating to the appropriate destination
             when (calculator.name) {
-                "One Rep Max Calculator" -> {
+                calculatorNames[0] -> { // One Rep Max Calculator
                     findNavController().navigate(R.id.action_homeFragment_to_oneRepMaxCalculatorFragment)
                 }
-                "Drop-set Calculator" -> {
+                calculatorNames[1] -> { // Drop-set Calculator
                     findNavController().navigate(R.id.action_homeFragment_to_dropSetCalculatorFragment)
                 }
-                "Pyramid Calculator" -> {
-                    findNavController().navigate(R.id.action_homeFragment_to_basicPyramidCalculatorFragment)
-                }
-                "Reverse Pyramid Calculator" -> {
+                calculatorNames[3] -> { // Reverse Pyramid Calculator
                     findNavController().navigate(R.id.action_homeFragment_to_reversePyramidCalculatorFragment)
                 }
-                "Tabata" -> {
+                calculatorNames[4] -> { // Pyramid Calculator
+                    findNavController().navigate(R.id.action_homeFragment_to_basicPyramidCalculatorFragment)
+                }
+                calculatorNames[6] -> { // Tabata
                     findNavController().navigate(R.id.action_homeFragment_to_tabataFragment)
                 }
                 // Add more cases for each calculator card
             }
         }
     }
-
 }
