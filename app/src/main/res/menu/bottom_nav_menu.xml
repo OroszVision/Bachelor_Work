@@ -11,7 +11,7 @@
         android:id="@+id/navHistory"
         android:icon="@drawable/baseline_history_24"/>
     <item
-        android:title="Timer"
+        android:title="@string/timer"
         android:id="@+id/navTimer"
         android:icon="@drawable/baseline_timer_24"
     />

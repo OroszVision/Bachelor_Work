@@ -13,7 +13,6 @@ import androidx.fragment.app.Fragment
 import com.example.bachelor_work.R
 import java.util.*
 
-//TODO: CALCULATORS DOESN'T WORK AFTER LOCALIZATION CHANGE TO CZECH
 class SettingsFragment : Fragment() {
 
     private lateinit var languageSpinner: Spinner

@@ -77,6 +77,9 @@
     <string name="_0_kg">0 kg</string>
     <string name="select_language">Vyber si jazyk</string>
     <string name="apply">Potvrdit</string>
+    <string name="settings">Nastavení</string>
+    <string name="guide">Nápověda</string>
+    <string name="timer">Stopky</string>
     <string-array name="language_options">
     <item>English</item>
     <item>Čeština</item>

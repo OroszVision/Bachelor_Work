@@ -104,7 +104,7 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.action_guide -> {
-                    // Handle guide item click
+                    navController.navigate(R.id.guideFragment)
                     true
                 }
                 // Add more menu items here if needed
