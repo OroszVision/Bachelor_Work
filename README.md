@@ -42,7 +42,7 @@ Níže je uveden Use Case diagram, který ilustruje hlavní uživatelské scén�
 
 1. Klonujte repozitář:
     ```bash
-    git clone [https://github.com/vas-uzivatel/jmeno-repozitare.git](https://github.com/OroszVision/Bachelor_Work.git)
+    git clone https://github.com/OroszVision/Bachelor_Work.git
     ```
 2. Otevřete projekt v Android Studiu.
 3. Nainstalujte závislosti a synchronizujte projekt s Gradle.
