@@ -7,9 +7,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bachelor_work.R
 import com.example.bachelor_work.model.HealthMetric
+import com.example.bachelor_work.utils.DeletableRecordProvider
 
 class HealthMetricsAdapter(private val healthMetrics: MutableList<HealthMetric>) :
-    RecyclerView.Adapter<HealthMetricsAdapter.HealthMetricViewHolder>() {
+    RecyclerView.Adapter<HealthMetricsAdapter.HealthMetricViewHolder>(), DeletableRecordProvider {
 
     private lateinit var editableHealthMetricProvider: EditableHealthMetricProvider
     private lateinit var itemClickListener: OnItemClickListener
@@ -33,7 +34,15 @@ class HealthMetricsAdapter(private val healthMetrics: MutableList<HealthMetric>)
     fun setEditableHealthMetricProvider(provider: EditableHealthMetricProvider) {
         editableHealthMetricProvider = provider
     }
-
+    override fun deleteRecord(record: Any) {
+        if (record is HealthMetric) {
+            val position = healthMetrics.indexOf(record)
+            if (position != -1) {
+                healthMetrics.removeAt(position)
+                notifyItemRemoved(position)
+            }
+        }
+    }
     // ViewHolder class
     inner class HealthMetricViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val nameTextView: TextView = itemView.findViewById(R.id.metricTitleTextView)

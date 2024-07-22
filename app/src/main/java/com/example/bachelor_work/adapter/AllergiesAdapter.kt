@@ -7,9 +7,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bachelor_work.R
 import com.example.bachelor_work.model.AllergiesMetric
+import com.example.bachelor_work.utils.DeletableRecordProvider
 
 class AllergiesAdapter(private val allergiesMetrics: MutableList<AllergiesMetric>) :
-    RecyclerView.Adapter<AllergiesAdapter.AllergiesMetricViewHolder>() {
+    RecyclerView.Adapter<AllergiesAdapter.AllergiesMetricViewHolder>(),DeletableRecordProvider {
 
     private lateinit var editableAllergiesMetricProvider: EditableAllergiesMetricProvider
     private lateinit var itemClickListener: OnItemClickListener
@@ -32,6 +33,15 @@ class AllergiesAdapter(private val allergiesMetrics: MutableList<AllergiesMetric
     // Method to set the editable allergies metric provider
     fun setEditableAllergiesMetricProvider(provider: EditableAllergiesMetricProvider) {
         editableAllergiesMetricProvider = provider
+    }
+    override fun deleteRecord(record: Any) {
+        if (record is AllergiesMetric) {
+            val position = allergiesMetrics.indexOf(record)
+            if (position != -1) {
+                allergiesMetrics.removeAt(position)
+                notifyItemRemoved(position)
+            }
+        }
     }
 
     // ViewHolder class

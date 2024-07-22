@@ -7,9 +7,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bachelor_work.R
 import com.example.bachelor_work.model.InjuryMetric
+import com.example.bachelor_work.utils.DeletableRecordProvider
 
 class InjuryHistoryAdapter(private val injuryMetrics: MutableList<InjuryMetric>) :
-    RecyclerView.Adapter<InjuryHistoryAdapter.InjuryMetricViewHolder>() {
+    RecyclerView.Adapter<InjuryHistoryAdapter.InjuryMetricViewHolder>(),DeletableRecordProvider {
 
     private lateinit var editableInjuryMetricProvider: EditableInjuryMetricProvider
     private lateinit var itemClickListener: OnItemClickListener
@@ -33,7 +34,15 @@ class InjuryHistoryAdapter(private val injuryMetrics: MutableList<InjuryMetric>)
     fun setEditableInjuryMetricProvider(provider: EditableInjuryMetricProvider) {
         editableInjuryMetricProvider = provider
     }
-
+    override fun deleteRecord(record: Any) {
+        if (record is InjuryMetric) {
+            val position = injuryMetrics.indexOf(record)
+            if (position != -1) {
+                injuryMetrics.removeAt(position)
+                notifyItemRemoved(position)
+            }
+        }
+    }
     // ViewHolder class
     inner class InjuryMetricViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val nameTextView: TextView = itemView.findViewById(R.id.metricTitleTextView)

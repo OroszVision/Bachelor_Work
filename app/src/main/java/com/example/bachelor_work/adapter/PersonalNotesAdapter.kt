@@ -7,9 +7,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bachelor_work.R
 import com.example.bachelor_work.model.PersonalNote
+import com.example.bachelor_work.utils.DeletableRecordProvider
 
 class PersonalNotesAdapter(private val personalNotes: MutableList<PersonalNote>) :
-    RecyclerView.Adapter<PersonalNotesAdapter.PersonalNoteViewHolder>() {
+    RecyclerView.Adapter<PersonalNotesAdapter.PersonalNoteViewHolder>(), DeletableRecordProvider {
 
     private lateinit var editablePersonalNoteProvider: EditablePersonalNoteProvider
     private lateinit var itemClickListener: OnItemClickListener
@@ -32,6 +33,16 @@ class PersonalNotesAdapter(private val personalNotes: MutableList<PersonalNote>)
     // Method to set the editable personal note provider
     fun setEditablePersonalNoteProvider(provider: EditablePersonalNoteProvider) {
         editablePersonalNoteProvider = provider
+    }
+
+    override fun deleteRecord(record: Any) {
+        if (record is PersonalNote) {
+            val position = personalNotes.indexOf(record)
+            if (position != -1) {
+                personalNotes.removeAt(position)
+                notifyItemRemoved(position)
+            }
+        }
     }
 
     // ViewHolder class

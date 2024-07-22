@@ -8,9 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.bachelor_work.R
 import com.example.bachelor_work.model.StrengthMetric
 import com.example.bachelor_work.model.StrengthMetricHistoryEntry
+import com.example.bachelor_work.utils.DeletableRecordProvider
 
 class StrengthMetricsAdapter(private val strengthMetrics: MutableList<StrengthMetric>) :
-    RecyclerView.Adapter<StrengthMetricsAdapter.StrengthMetricViewHolder>() {
+    RecyclerView.Adapter<StrengthMetricsAdapter.StrengthMetricViewHolder>(), DeletableRecordProvider {
 
     // Define listener interfaces
     interface EditableStrengthMetricProvider {
@@ -94,5 +95,15 @@ class StrengthMetricsAdapter(private val strengthMetrics: MutableList<StrengthMe
 
     fun getStrengthMetrics(): MutableList<StrengthMetric> {
         return strengthMetrics
+    }
+
+    override fun deleteRecord(record: Any) {
+        if (record is StrengthMetric) {
+            val position = strengthMetrics.indexOf(record)
+            if (position != -1) {
+                strengthMetrics.removeAt(position)
+                notifyItemRemoved(position)
+            }
+        }
     }
 }

@@ -2,20 +2,16 @@
     <string-array name="calculator_names">
         <item>One Rep Max Kalkulačka</item>
         <item>Drop-set Kalkulačka</item>
-        <item>Super-set Kalkulačka</item>
         <item>Reverse Pyramid Kalkulačka</item>
         <item>Pyramid Kalkulačka</item>
-        <item>Rest-pause Kalkulačka</item>
         <item>Tabata</item>
     </string-array>
 
     <string-array name="calculator_descriptions">
         <item>One Rep Max (1RM) je klíčový metr v posilování, představující maximální množství váhy, které může jednotlivec zvednout jedním opakováním se správnou technikou. Je zásadní pro návrh účinných tréninkových programů na sílu.\n\nMetody výpočtu:\n\nEpleyho formule: Odhaduje 1RM pomocí zvednuté váhy a provedených opakování.\n\nBrzyckiho formule: Vypočítá 1RM na základě zvednuté váhy a provedených opakování.\n\nLombardiho formule: Poskytuje alternativní přístup k odhadu 1RM pomocí zvednuté váhy a provedených opakování.</item>
         <item>Drop Set je technika v posilování, kde jednotlivec provádí sérii cviku do selhání nebo téměř do selhání, pak snižuje váhu a pokračuje další sérií bez odpočinku. Tento proces lze opakovat pro více sérií, přičemž se váha každou sérií snižuje.</item>
-        <item>Popis Super-set Kalkulačky</item>
         <item>Reverzní pyramida je technika v posilování, kde jednotlivec začíná s těžší váhou a menším počtem opakování v první sérii, pak postupně snižuje váhu a zvyšuje počet opakování s každou další sérií. Tato metoda umožňuje maximální úsilí v počátečních sériích, kdy jsou úrovně síly nejvyšší, následované metabolickou únavou a svalovou vytrvalostí v pozdějších sériích. Každá série je prováděna téměř do selhání nebo úplného selhání, poskytující náročný trénink, který cílí jak na sílu, tak na hypertrofii. Reverzní pyramida může být efektivní způsob, jak stimulovat růst svalů a zlepšit celkovou sílu a vytrvalost.</item>
         <item>Pyramidový trénink je technika v posilování, kde jednotlivec začíná s lehčí váhou a vyšším počtem opakování v první sérii, pak postupně zvyšuje váhu a snižuje počet opakování s každou další sérií. Tato metoda umožňuje postupné budování síly a vytrvalosti během tréninku. Počáteční série se zaměřují na svalovou vytrvalost a metabolickou kondici, zatímco pozdější série cílí na maximální rozvoj síly. Postupným zvyšováním váhy a snižováním počtu opakování poskytuje pyramidový trénink vyvážený přístup k budování svalové hmoty a síly. Tato technika je všestranná a lze ji přizpůsobit různým tréninkovým cílům.</item>
-        <item>Popis Rest-pause Kalkulačky</item>
         <item>Popis Tabaty</item>
     </string-array>
 </resources>

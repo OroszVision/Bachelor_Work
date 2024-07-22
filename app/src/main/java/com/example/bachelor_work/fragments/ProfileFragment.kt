@@ -406,6 +406,7 @@ class ProfileFragment : Fragment(),
         dialog.setContentView(R.layout.dialog_add_other_metric)
         val saveButton = dialog.findViewById<Button>(R.id.saveButton)
         val cancelButton = dialog.findViewById<Button>(R.id.cancelButton)
+        val deleteButton = dialog.findViewById<Button>(R.id.deleteButton)
         val detailsEditText = dialog.findViewById<EditText>(R.id.metricNameEditText)
 
         // Set dialog window dimensions
@@ -415,36 +416,39 @@ class ProfileFragment : Fragment(),
         // Set existing data to EditText fields
         detailsEditText.setText(allergiesMetric.type)
 
+        // Show delete button only if editing an existing item
+        deleteButton.visibility = View.VISIBLE
+
         saveButton.setOnClickListener {
-            // Retrieve entered data from EditText fields
             val details = detailsEditText.text.toString()
 
-            // Validate entered data
             if (details.isNotEmpty()) {
-                // Update the allergies metric data in the RecyclerView
                 val updatedAllergiesMetric = AllergiesMetric(details)
                 allergiesMetricsAdapter.updateAllergiesMetric(allergiesMetric, updatedAllergiesMetric)
                 dialog.dismiss()
             } else {
-                // Show error message if data is invalid
                 Toast.makeText(requireContext(), "Invalid input. Please enter valid data.", Toast.LENGTH_SHORT).show()
             }
         }
 
         cancelButton.setOnClickListener {
-            // Dismiss the dialog if Cancel button is clicked
+            dialog.dismiss()
+        }
+
+        deleteButton.setOnClickListener {
+            allergiesMetricsAdapter.deleteRecord(allergiesMetric)
             dialog.dismiss()
         }
 
         dialog.show()
     }
 
-    // Inside ProfileFragment class
     override fun showEditPersonalNoteDialog(personalNote: PersonalNote) {
         val dialog = Dialog(requireContext())
         dialog.setContentView(R.layout.dialog_add_personal_note)
         val saveButton = dialog.findViewById<Button>(R.id.saveButton)
         val cancelButton = dialog.findViewById<Button>(R.id.cancelButton)
+        val deleteButton = dialog.findViewById<Button>(R.id.deleteButton)
         val titleEditText = dialog.findViewById<EditText>(R.id.titleEditText)
         val contentEditText = dialog.findViewById<EditText>(R.id.contentEditText)
 
@@ -455,6 +459,9 @@ class ProfileFragment : Fragment(),
         // Set existing data to EditText fields
         titleEditText.setText(personalNote.title)
         contentEditText.setText(personalNote.content)
+
+        // Show delete button only if editing an existing item
+        deleteButton.visibility = View.VISIBLE
 
         saveButton.setOnClickListener {
             val title = titleEditText.text.toString()
@@ -473,15 +480,19 @@ class ProfileFragment : Fragment(),
             dialog.dismiss()
         }
 
+        deleteButton.setOnClickListener {
+            personalNotesAdapter.deleteRecord(personalNote)
+            dialog.dismiss()
+        }
+
         dialog.show()
     }
-
-    // Show dialog to edit an existing strength metric
     override fun showEditStrengthMetricDialog(strengthMetric: StrengthMetric) {
         val dialog = Dialog(requireContext())
         dialog.setContentView(R.layout.dialog_add_strength_metric)
         val saveButton = dialog.findViewById<Button>(R.id.saveButton)
         val cancelButton = dialog.findViewById<Button>(R.id.cancelButton)
+        val deleteButton = dialog.findViewById<Button>(R.id.deleteButton)
         val exerciseNameEditText = dialog.findViewById<EditText>(R.id.exerciseNameEditText)
         val maxLiftEditText = dialog.findViewById<EditText>(R.id.maxLiftEditText)
 
@@ -493,37 +504,39 @@ class ProfileFragment : Fragment(),
         exerciseNameEditText.setText(strengthMetric.exerciseName)
         maxLiftEditText.setText(strengthMetric.maxLift.toString())
 
+        // Show delete button only if editing an existing item
+        deleteButton.visibility = View.VISIBLE
+
         saveButton.setOnClickListener {
-            // Retrieve entered data from EditText fields
             val name = exerciseNameEditText.text.toString()
             val value = maxLiftEditText.text.toString().toDoubleOrNull()
 
-            // Validate entered data
             if (name.isNotEmpty() && value != null) {
-                // Update the strength metric data in the RecyclerView
                 val updatedStrengthMetric = StrengthMetric(name, value)
                 strengthMetricsAdapter.updateStrengthMetric(strengthMetric, updatedStrengthMetric)
                 dialog.dismiss()
             } else {
-                // Show error message if data is invalid
                 Toast.makeText(requireContext(), "Invalid input. Please enter valid data.", Toast.LENGTH_SHORT).show()
             }
         }
 
         cancelButton.setOnClickListener {
-            // Dismiss the dialog if Cancel button is clicked
+            dialog.dismiss()
+        }
+
+        deleteButton.setOnClickListener {
+            strengthMetricsAdapter.deleteRecord(strengthMetric)
             dialog.dismiss()
         }
 
         dialog.show()
     }
-
-    // Show dialog to edit an existing health metric
     override fun showEditHealthMetricDialog(healthMetric: HealthMetric) {
         val dialog = Dialog(requireContext())
         dialog.setContentView(R.layout.dialog_add_health_metric)
         val saveButton = dialog.findViewById<Button>(R.id.saveButton)
         val cancelButton = dialog.findViewById<Button>(R.id.cancelButton)
+        val deleteButton = dialog.findViewById<Button>(R.id.deleteButton)
         val healthMetricNameEditText = dialog.findViewById<EditText>(R.id.healthMetricNameEditText)
         val valueEditText = dialog.findViewById<EditText>(R.id.valueEditText)
 
@@ -535,37 +548,39 @@ class ProfileFragment : Fragment(),
         healthMetricNameEditText.setText(healthMetric.metricName)
         valueEditText.setText(healthMetric.value.toString())
 
+        // Show delete button only if editing an existing item
+        deleteButton.visibility = View.VISIBLE
+
         saveButton.setOnClickListener {
-            // Retrieve entered data from EditText fields
             val name = healthMetricNameEditText.text.toString()
             val value = valueEditText.text.toString().toDoubleOrNull()
 
-            // Validate entered data
             if (name.isNotEmpty() && value != null) {
-                // Update the health metric data in the RecyclerView
                 val updatedHealthMetric = HealthMetric(name, value)
                 healthMetricsAdapter.updateHealthMetric(healthMetric, updatedHealthMetric)
                 dialog.dismiss()
             } else {
-                // Show error message if data is invalid
                 Toast.makeText(requireContext(), "Invalid input. Please enter valid data.", Toast.LENGTH_SHORT).show()
             }
         }
 
         cancelButton.setOnClickListener {
-            // Dismiss the dialog if Cancel button is clicked
+            dialog.dismiss()
+        }
+
+        deleteButton.setOnClickListener {
+            healthMetricsAdapter.deleteRecord(healthMetric)
             dialog.dismiss()
         }
 
         dialog.show()
     }
-
-    // Show dialog to edit an existing injury metric
     fun showEditInjuryMetricDialog(injuryMetric: InjuryMetric) {
         val dialog = Dialog(requireContext())
         dialog.setContentView(R.layout.dialog_add_other_metric)
         val saveButton = dialog.findViewById<Button>(R.id.saveButton)
         val cancelButton = dialog.findViewById<Button>(R.id.cancelButton)
+        val deleteButton = dialog.findViewById<Button>(R.id.deleteButton)
         val detailsEditText = dialog.findViewById<EditText>(R.id.metricNameEditText)
 
         // Set dialog window dimensions
@@ -575,29 +590,33 @@ class ProfileFragment : Fragment(),
         // Set existing data to EditText fields
         detailsEditText.setText(injuryMetric.details)
 
+        // Show delete button only if editing an existing item
+        deleteButton.visibility = View.VISIBLE
+
         saveButton.setOnClickListener {
-            // Retrieve entered data from EditText fields
             val details = detailsEditText.text.toString()
 
-            // Validate entered data
             if (details.isNotEmpty()) {
-                // Update the injury metric data in the RecyclerView
                 val updatedInjuryMetric = InjuryMetric(details)
                 injuryMetricsAdapter.updateInjuryMetric(injuryMetric, updatedInjuryMetric)
                 dialog.dismiss()
             } else {
-                // Show error message if data is invalid
                 Toast.makeText(requireContext(), "Invalid input. Please enter valid data.", Toast.LENGTH_SHORT).show()
             }
         }
 
         cancelButton.setOnClickListener {
-            // Dismiss the dialog if Cancel button is clicked
+            dialog.dismiss()
+        }
+
+        deleteButton.setOnClickListener {
+            injuryMetricsAdapter.deleteRecord(injuryMetric)
             dialog.dismiss()
         }
 
         dialog.show()
     }
+
 
     // Function to save all data
     private fun saveAllData() {
