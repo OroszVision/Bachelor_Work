@@ -81,8 +81,8 @@ Tento projekt je licencován pod MIT licencí. Případné použití, kopírová
 
 Máte-li dotazy nebo zpětnou vazbu, kontaktujte mě na:
 
-- Email: [vase-email@domena.com](mailto:oroszvision@gmail.com)
-- GitHub: [https://github.com/vas-uzivatel](https://github.com/oroszvision)
+- Email: [oroszvision@gmail.com](mailto:oroszvision@gmail.com)
+- GitHub: [https://github.com/oroszvision](https://github.com/oroszvision)
 
 ---
 
