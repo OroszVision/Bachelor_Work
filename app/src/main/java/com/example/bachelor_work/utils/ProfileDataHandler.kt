@@ -7,10 +7,15 @@ import android.util.Log
 import com.example.bachelor_work.model.*
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.itextpdf.io.font.constants.StandardFonts
+import com.itextpdf.kernel.colors.ColorConstants
+import com.itextpdf.kernel.font.PdfFont
+import com.itextpdf.kernel.font.PdfFontFactory
 import com.itextpdf.kernel.pdf.PdfDocument
 import com.itextpdf.kernel.pdf.PdfWriter
 import com.itextpdf.layout.Document
 import com.itextpdf.layout.element.Paragraph
+import com.itextpdf.layout.element.Text
 import com.itextpdf.layout.properties.TextAlignment
 import java.io.File
 import java.io.FileOutputStream
@@ -89,55 +94,64 @@ class ProfileDataHandler(context: Context) {
         val document = Document(pdf)
 
         try {
+            // Load fonts
+            val titleFont: PdfFont = PdfFontFactory.createFont(StandardFonts.HELVETICA_BOLD)
+            val bodyFont: PdfFont = PdfFontFactory.createFont(StandardFonts.HELVETICA)
+
             // Add document title
             val title = Paragraph("Profile Data")
+                .setFont(titleFont)
+                .setFontSize(24f)
                 .setTextAlignment(TextAlignment.CENTER)
-                .setFontSize(20f)
                 .setBold()
                 .setMarginBottom(20f)
+                .setMarginTop(30f)
+                .setBackgroundColor(ColorConstants.LIGHT_GRAY)
+                .setPadding(10f)
             document.add(title)
 
             // Add profile data details
-            document.add(Paragraph("Body Weight: ${profileData.bodyWeight}"))
-            document.add(Paragraph("Body Fat Percentage: ${profileData.bodyFatPercentage}"))
-            document.add(Paragraph("Height: ${profileData.height}"))
-            document.add(Paragraph("Age: ${profileData.age}"))
-            document.add(Paragraph("Blood Pressure: ${profileData.bloodPressure}"))
-            document.add(Paragraph("Heart Rate: ${profileData.heartRate}"))
-            document.add(Paragraph("")) // Add empty line for spacing
+            addSectionHeader(document, "Profile Details", titleFont)
+            addParagraph(document, "Body Weight: ${profileData.bodyWeight}", bodyFont)
+            addParagraph(document, "Body Fat Percentage: ${profileData.bodyFatPercentage}", bodyFont)
+            addParagraph(document, "Height: ${profileData.height}", bodyFont)
+            addParagraph(document, "Age: ${profileData.age}", bodyFont)
+            addParagraph(document, "Blood Pressure: ${profileData.bloodPressure}", bodyFont)
+            addParagraph(document, "Heart Rate: ${profileData.heartRate}", bodyFont)
+            addEmptyLine(document, 10F)
 
             // Add strength metrics
-            document.add(Paragraph("Strength Metrics:"))
+            addSectionHeader(document, "Strength Metrics", titleFont)
             profileData.strengthMetrics.forEach {
-                document.add(Paragraph("${it.exerciseName}: ${it.maxLift}"))
+                addParagraph(document, "${it.exerciseName}: ${it.maxLift}", bodyFont)
             }
-            document.add(Paragraph("")) // Add empty line for spacing
+            addEmptyLine(document, 10F)
 
             // Add health metrics
-            document.add(Paragraph("Health Metrics:"))
+            addSectionHeader(document, "Health Metrics", titleFont)
             profileData.healthMetrics.forEach {
-                document.add(Paragraph("${it.metricName}: ${it.value}"))
+                addParagraph(document, "${it.metricName}: ${it.value}", bodyFont)
             }
-            document.add(Paragraph("")) // Add empty line for spacing
+            addEmptyLine(document, 10F)
 
             // Add injury metrics
-            document.add(Paragraph("Injury Metrics:"))
+            addSectionHeader(document, "Injury Metrics", titleFont)
             profileData.injuryMetrics.forEach {
-                document.add(Paragraph(it.details))
+                addParagraph(document, it.details, bodyFont)
             }
-            document.add(Paragraph("")) // Add empty line for spacing
+            addEmptyLine(document, 10F)
 
             // Add allergies metrics
-            document.add(Paragraph("Allergies Metrics:"))
+            addSectionHeader(document, "Allergies Metrics", titleFont)
             profileData.allergiesMetrics.forEach {
-                document.add(Paragraph(it.type))
+                addParagraph(document, it.type, bodyFont)
             }
-            document.add(Paragraph("")) // Add empty line for spacing
+            addEmptyLine(document, 10F)
 
             // Add personal notes
-            document.add(Paragraph("Personal Notes:"))
+            addSectionHeader(document, "Personal Notes", titleFont)
             profileData.personalNotes.forEach {
-                document.add(Paragraph("${it.title}: ${it.content}"))
+                addParagraph(document, "${it.title}: ${it.content}", bodyFont)
             }
 
             // Close the document
@@ -150,6 +164,30 @@ class ProfileDataHandler(context: Context) {
         } finally {
             outputStream.close()
         }
+    }
+
+    private fun addSectionHeader(document: Document, headerText: String, font: PdfFont) {
+        val header = Paragraph(headerText)
+            .setFont(font)
+            .setFontSize(18f)
+            .setTextAlignment(TextAlignment.LEFT)
+            .setMarginBottom(5f)
+            .setBold()
+            .setBackgroundColor(ColorConstants.LIGHT_GRAY)
+            .setPadding(5f)
+        document.add(header)
+    }
+
+    private fun addParagraph(document: Document, text: String, font: PdfFont) {
+        val paragraph = Paragraph(Text(text).setFont(font))
+            .setFontSize(12f)
+            .setMarginBottom(10f)
+        document.add(paragraph)
+    }
+
+    private fun addEmptyLine(document: Document, height: Float) {
+        val emptyLine = Paragraph().setMarginBottom(height)
+        document.add(emptyLine)
     }
     // In ProfileDataHandler
     fun getStrengthMetricsWithHistory(): List<StrengthMetric> {

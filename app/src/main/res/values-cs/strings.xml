@@ -80,6 +80,14 @@
     <string name="settings">Nastavení</string>
     <string name="guide">Nápověda</string>
     <string name="timer">Stopky</string>
+    <string name="welcome_to_the_weightlifting_training_app">Vítejte v naší tréninkové aplikaci!</string>
+    <string name="calculators_guide_description">Vyplňte všechna textová pole v kalkulátorech, abyste získali co nejpřesnější výsledky, a poté stiskněte tlačítko pro výpočet.</string>
+    <string name="history_guide_description">V této sekci můžete zobrazit historii použití kalkulátorů a znovu se podívat na své předchozí výpočty.</string>
+    <string name="pdf_export_guide_description">V každém kalkulátoru, záznamu historie a profilu je tlačítko označené „Exportovat do PDF“. Stisknutím uložíte své záznamy nebo výpočty do složky Dokumenty.</string>
+    <string name="stopwatch_guide_description">Stopky jsou plně ovládány tlačítky; není potřeba žádné psaní.</string>
+    <string name="profile_guide_description">Zaznamenejte své míry a další metriky, abyste mohli sledovat své zdraví. Pro uložení změn stiskněte tlačítko „Uložit“ ve spodní části.</string>
+    <string name="statistics_guide_description">Zobrazuje záznamy o zdravotních metrikách a síle pro jednotlivá cvičení pro porovnání.</string>
+
     <string-array name="language_options">
     <item>English</item>
     <item>Čeština</item>

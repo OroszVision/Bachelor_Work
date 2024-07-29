@@ -81,6 +81,13 @@
     <string name="settings">Settings</string>
     <string name="guide">Guide</string>
     <string name="timer">Timer</string>
+    <string name="welcome_to_the_weightlifting_training_app">Welcome to the Weightlifting Training App!</string>
+    <string name="calculators_guide_description">Fill in all text fields in the calculators to get the most accurate results possible, then press the button to calculate.</string>
+    <string name="history_guide_description">In this section, you can view the history of your calculator usage to revisit your previous calculations.</string>
+    <string name="pdf_export_guide_description">In every calculator, history entry, and profile, there\'s a button labeled "Export to PDF." Pressing it will save your records or calculations in the Documents folder.</string>
+    <string name="stopwatch_guide_description">The stopwatch is fully controlled by buttons; no typing is needed.</string>
+    <string name="profile_guide_description">Record your measurements and other metrics to keep track of your health. Press the "Save" button at the bottom to save any changes.</string>
+    <string name="statistics_guide_description">Displays records of health metrics and strength for each exercise for comparison.</string>
     <string-array name="language_options">
         <item>English</item>
         <item>Čeština</item>
